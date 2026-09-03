@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no,
+      viewport-fit=cover">
+
+<!-- =====================================================
+     APP / HOME SCREEN ICON
+===================================================== -->
+
+<link rel="icon"
+      type="image/png"
+      href="https://i.postimg.cc/QdjXVTyn/E97688D9-07BD-44A8-AA03-619EB3DB6A9B.png">
+
+<link rel="apple-touch-icon"
+      href="https://i.postimg.cc/QdjXVTyn/E97688D9-07BD-44A8-AA03-619EB3DB6A9B.png">
+
+<meta name="apple-mobile-web-app-title"
+      content="VaiperX🐔 ไก่โค้ด">
+
+<meta name="apple-mobile-web-app-capable"
+      content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+      content="black">
+
+<meta name="theme-color"
+      content="#050505">
+
+
+<title>VaiperX🐔 ไก่โค้ด</title>
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+}
+
+
+body {
+
+    font-family:
+        Arial,
+        "Noto Sans Thai",
+        sans-serif;
+
+    background: #050505;
+
+    color: #ffffff;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+}
+
+
+/* =====================================================
+   BACKGROUND GRID
+===================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   RED GLOW
+===================================================== */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+
+    height: 350px;
+
+    background: #ff003c;
+
+    filter: blur(160px);
+
+    opacity: 0.12;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
+   MAIN PANEL
+===================================================== */
+
+.panel {
+
+    width: min(92%, 440px);
+
+    padding: 26px 20px 22px;
+
+    position: relative;
+
+    z-index: 2;
+
+    border-radius: 24px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.015)
+        );
+
+    border:
+        1px solid rgba(255,0,55,0.35);
+
+    backdrop-filter: blur(22px);
+
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+
+        0 0 45px rgba(0,0,0,0.70),
+
+        0 0 35px rgba(255,0,55,0.10),
+
+        inset 0 0 30px rgba(255,255,255,0.015);
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    text-align: center;
+
+    font-size: 29px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    color: #ffffff;
+
+    text-shadow:
+
+        0 0 8px rgba(255,0,55,0.9),
+
+        0 0 18px rgba(255,0,55,0.7),
+
+        0 0 35px rgba(255,0,55,0.45);
+
+}
+
+
+.brand span {
+
+    color: #ff174d;
+
+    text-shadow:
+
+        0 0 8px #ff174d,
+
+        0 0 18px #ff174d,
+
+        0 0 30px rgba(255,23,77,0.8);
+
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.subtitle {
+
+    text-align: center;
+
+    margin-top: 7px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.42);
+
+}
+
+
+/* =====================================================
+   SEPARATOR
+===================================================== */
+
+.separator {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin: 21px 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff174d,
+            transparent
+        );
+
+    box-shadow:
+
+        0 0 12px rgba(255,0,55,0.65);
+
+}
+
+
+/* =====================================================
+   BUTTON LIST
+===================================================== */
+
+.button-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTON
+===================================================== */
+
+.action-button {
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 16px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid rgba(255,0,55,0.30);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.012)
+        );
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+
+        transform .20s ease,
+
+        border-color .20s ease,
+
+        box-shadow .20s ease,
+
+        background .20s ease;
+
+    box-shadow:
+
+        0 7px 20px rgba(0,0,0,0.35);
+
+}
+
+
+/* =====================================================
+   LEFT RED BAR
+===================================================== */
+
+.action-button::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 14px;
+
+    width: 3px;
+
+    height: 42px;
+
+    background: #ff174d;
+
+    border-radius:
+        0 5px 5px 0;
+
+    box-shadow:
+
+        0 0 8px #ff174d,
+
+        0 0 18px #ff174d;
+
+}
+
+
+/* =====================================================
+   MOVING LIGHT
+===================================================== */
+
+.action-button::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -130%;
+
+    width: 90%;
+
+    height: 100%;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,0,55,0.16),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+
+    transition: .6s ease;
+
+}
+
+
+.action-button:hover::after {
+
+    left: 130%;
+
+}
+
+
+/* =====================================================
+   FILLED ICON BOX
+===================================================== */
+
+.icon-box {
+
+    width: 45px;
+
+    height: 45px;
+
+    min-width: 45px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-right: 14px;
+
+    border-radius: 12px;
+
+    background: #ff174d;
+
+    color: #ffffff;
+
+    box-shadow:
+
+        0 0 10px rgba(255,0,55,0.35),
+
+        0 0 20px rgba(255,0,55,0.12),
+
+        inset 0 -5px 10px rgba(0,0,0,0.18);
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =====================================================
+   SVG FILLED ICON
+===================================================== */
+
+.icon-box svg {
+
+    width: 23px;
+
+    height: 23px;
+
+    fill: currentColor;
+
+    filter:
+
+        drop-shadow(
+            0 2px 3px rgba(0,0,0,0.35)
+        );
+
+}
+
+
+/* =====================================================
+   TEXT AREA
+===================================================== */
+
+.text-area {
+
+    flex: 1;
+
+    text-align: left;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.title {
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    line-height: 1.3;
+
+    color: #ffffff;
+
+}
+
+
+.description {
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color:
+        rgba(255,255,255,0.42);
+
+}
+
+
+/* =====================================================
+   ARROW
+===================================================== */
+
+.arrow {
+
+    width: 28px;
+
+    height: 28px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,0,55,0.10);
+
+    color: #ff174d;
+
+    font-size: 22px;
+
+    font-weight: 900;
+
+    position: relative;
+
+    z-index: 2;
+
+    transition: .20s ease;
+
+    text-shadow:
+
+        0 0 10px rgba(255,0,55,0.7);
+
+}
+
+
+/* =====================================================
+   PRESS EFFECT
+===================================================== */
+
+.action-button:active {
+
+    transform: scale(0.96);
+
+    border-color: #ff174d;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,0,55,0.18),
+            rgba(255,255,255,0.025)
+        );
+
+    box-shadow:
+
+        0 0 25px rgba(255,0,55,0.25),
+
+        inset 0 0 20px rgba(255,0,55,0.08);
+
+}
+
+
+.action-button:active .arrow {
+
+    transform:
+        translateX(4px);
+
+}
+
+
+/* =====================================================
+   RIPPLE
+===================================================== */
+
+.ripple {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.20);
+
+    transform: scale(0);
+
+    animation:
+        ripple .55s linear;
+
+    pointer-events: none;
+
+    z-index: 5;
+
+}
+
+
+@keyframes ripple {
+
+    to {
+
+        transform:
+            scale(4);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,0.23);
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .panel {
+
+        padding:
+            21px 15px;
+
+    }
+
+
+    .brand {
+
+        font-size: 25px;
+
+    }
+
+
+    .action-button {
+
+        min-height: 64px;
+
+    }
+
+
+    .icon-box {
+
+        width: 41px;
+
+        height: 41px;
+
+        min-width: 41px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MAIN PANEL
+===================================================== -->
+
+<div class="panel">
+
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        VaiperX<span>🐔 ไก่โค้ด</span>
+
+    </div>
+
+
+    <!-- SUBTITLE -->
+
+    <div class="subtitle">
+
+        IOS INSTALLATION CENTER
+
+    </div>
+
+
+    <!-- SEPARATOR -->
+
+    <div class="separator"></div>
+
+
+    <!-- =================================================
+         BUTTONS
+    ================================================== -->
+
+    <div class="button-list">
+
+
+        <!-- =============================================
+             1. คลิปสอนลงไอดีโค้ด IOS
+             รอลิงก์
+        ============================================== -->
+
+        <button
+            class="action-button"
+            onclick="openLink('', this)"
+        >
+
+            <div class="icon-box">
+
+                <!-- PLAY FILLED -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="
+                    M8 5.14v13.72
+                    c0 .78.85 1.26 1.54.82
+                    l10.12-6.86
+                    a.98.98 0 0 0 0-1.64
+                    L9.54 4.32
+                    A.98.98 0 0 0 8 5.14Z
+                    "/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="text-area">
+
+                <div class="title">
+
+                    คลิปสอนลงไอดีโค้ด IOS
+
+                </div>
+
+                <div class="description">
+
+                    ดูวิธีติดตั้งและใช้งานแบบละเอียด
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+
+                ›
+
+            </div>
+
+        </button>
+
+
+
+        <!-- =============================================
+             2. เว็บลงโค้ด
+        ============================================== -->
+
+        <button
+            class="action-button"
+            onclick="openLink(
+                'http://154.215.14.218:8080/',
+                this
+            )"
+        >
+
+            <div class="icon-box">
+
+                <!-- GLOBE FILLED -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="
+                    M12 2
+                    C6.48 2 2 6.48 2 12
+                    s4.48 10 10 10
+                    10-4.48 10-10
+                    S17.52 2 12 2Zm6.92 9h-3.03
+                    a15.8 15.8 0 0 0-1.22-5.04
+                    A8.04 8.04 0 0 1 18.92 11ZM12 4
+                    c.83 1.2 1.55 3.13 1.82 7h-3.64
+                    C10.45 7.13 11.17 5.2 12 4ZM9.33 5.96
+                    A15.8 15.8 0 0 0 8.11 11H5.08
+                    a8.04 8.04 0 0 1 4.25-5.04ZM5.08 13h3.03
+                    c.15 1.9.57 3.63 1.22 5.04
+                    A8.04 8.04 0 0 1 5.08 13ZM12 20
+                    c-.83-1.2-1.55-3.13-1.82-7h3.64
+                    c-.27 3.87-.99 5.8-1.82 7Zm2.67-1.96
+                    c.65-1.41 1.07-3.14 1.22-5.04h3.03
+                    a8.04 8.04 0 0 1-4.25 5.04Z
+                    "/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="text-area">
+
+                <div class="title">
+
+                    เว็บลงโค้ด
+
+                </div>
+
+                <div class="description">
+
+                    เปิดเว็บไซต์สำหรับลงไอดีโค้ด
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+
+                ›
+
+            </div>
+
+        </button>
+
+
+
+        <!-- =============================================
+             3. ลิ้ง QR Code
+        ============================================== -->
+
+        <button
+            class="action-button"
+            onclick="openLink(
+                'https://img1.pic.in.th/images/image929bf9e127afb92b.png',
+                this
+            )"
+        >
+
+            <div class="icon-box">
+
+                <!-- QR FILLED -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="
+                    M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h2v2h-2v-2Zm3 0h4v2h-4v-2Zm-3 4h2v3h-2v-3Zm3-2h2v2h-2v-2Zm2 2h2v3h-2v-3Zm-5-1h2v1h-2v-1Z
+                    "/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="text-area">
+
+                <div class="title">
+
+                    ลิ้ง QR Code
+
+                </div>
+
+                <div class="description">
+
+                    เปิด QR Code สำหรับใช้งาน
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+
+                ›
+
+            </div>
+
+        </button>
+
+
+
+        <!-- =============================================
+             4. ลิ้งแอปที่ใช้ลง
+        ============================================== -->
+
+        <button
+            class="action-button"
+            onclick="openLink(
+                'https://apps.apple.com/th/app/potatso/id1239860606?l=th',
+                this
+            )"
+        >
+
+            <div class="icon-box">
+
+                <!-- DOWNLOAD FILLED -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="
+                    M12 3
+                    a1 1 0 0 1 1 1v8.59
+                    l2.3-2.3
+                    a1 1 0 1 1 1.4 1.42
+                    l-4 4
+                    a1 1 0 0 1-1.4 0
+                    l-4-4
+                    a1 1 0 1 1 1.4-1.42
+                    l2.3 2.3V4
+                    a1 1 0 0 1 1-1ZM4 17
+                    a1 1 0 0 1 1 1h14
+                    a1 1 0 1 1 0 2H5
+                    a3 3 0 0 1-3-3v-1
+                    a1 1 0 1 1 2 0v1Z
+                    "/>
+
+                </svg>
+
+            </div>
+
+
+            <div class="text-area">
+
+                <div class="title">
+
+                    ลิ้งแอปที่ใช้ลง
+
+                </div>
+
+                <div class="description">
+
+                    ดาวน์โหลดแอปสำหรับติดตั้ง
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow">
+
+                ›
+
+            </div>
+
+        </button>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        VAIPERX • IOS INSTALLATION SYSTEM
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   OPEN LINK
+===================================================== */
+
+function openLink(url, button) {
+
+    const e = window.event;
+
+    createRipple(e, button);
+
+
+    /* ถ้ายังไม่มีลิงก์ */
+
+    if (!url) {
+
+        return;
+
+    }
+
+
+    /* เปิดลิงก์ */
+
+    setTimeout(() => {
+
+        window.open(
+            url,
+            "_blank"
+        );
+
+    }, 180);
+
+}
+
+
+/* =====================================================
+   RIPPLE EFFECT
+===================================================== */
+
+function createRipple(e, button) {
+
+    if (!e) return;
+
+
+    const rect =
+        button.getBoundingClientRect();
+
+
+    const ripple =
+        document.createElement("span");
+
+
+    ripple.classList.add("ripple");
+
+
+    const size =
+        Math.max(
+            rect.width,
+            rect.height
+        );
+
+
+    ripple.style.width =
+        size + "px";
+
+
+    ripple.style.height =
+        size + "px";
+
+
+    ripple.style.left =
+        (
+            e.clientX -
+            rect.left -
+            size / 2
+        ) + "px";
+
+
+    ripple.style.top =
+        (
+            e.clientY -
+            rect.top -
+            size / 2
+        ) + "px";
+
+
+    button.appendChild(ripple);
+
+
+    setTimeout(() => {
+
+        ripple.remove();
+
+    }, 600);
+
+}
+
+
+/* =====================================================
+   DISABLE CONTEXT MENU
+===================================================== */
+
+document.addEventListener(
+    "contextmenu",
+    function(e) {
+
+        e.preventDefault();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
