@@ -13,7 +13,7 @@
       viewport-fit=cover">
 
 <!-- =====================================================
-     APP / HOME SCREEN ICON
+     APP ICON
 ===================================================== -->
 
 <link rel="icon"
@@ -30,11 +30,10 @@
       content="yes">
 
 <meta name="apple-mobile-web-app-status-bar-style"
-      content="black">
+      content="black-translucent">
 
 <meta name="theme-color"
-      content="#050505">
-
+      content="#030305">
 
 <title>VaiperX🐔 ไก่โค้ด</title>
 
@@ -48,7 +47,6 @@
 * {
 
     margin: 0;
-
     padding: 0;
 
     box-sizing: border-box;
@@ -58,12 +56,17 @@
 }
 
 
+/* =====================================================
+   HTML / BODY
+===================================================== */
+
 html,
 body {
 
     width: 100%;
-
     height: 100%;
+
+    min-height: 100%;
 
     overflow: hidden;
 
@@ -77,23 +80,35 @@ body {
         "Noto Sans Thai",
         sans-serif;
 
-    background: #050505;
+    background:
 
-    color: #ffffff;
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,0,60,.14),
+            transparent 38%
+        ),
 
-    display: flex;
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(255,0,60,.08),
+            transparent 35%
+        ),
 
-    justify-content: center;
+        #030305;
 
-    align-items: center;
+    color: #fff;
 
     position: relative;
+
+    min-height: 100dvh;
+
+    padding: 0 !important;
 
 }
 
 
 /* =====================================================
-   BACKGROUND GRID
+   CYBER GRID
 ===================================================== */
 
 body::before {
@@ -104,28 +119,61 @@ body::before {
 
     inset: 0;
 
-    background:
+    background-image:
 
         linear-gradient(
-            rgba(255,255,255,0.025) 1px,
+            rgba(255,255,255,.022) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            rgba(255,255,255,0.025) 1px,
+            rgba(255,255,255,.022) 1px,
             transparent 1px
         );
 
-    background-size: 35px 35px;
+    background-size:
+        32px 32px;
+
+    mask-image:
+
+        linear-gradient(
+            to bottom,
+            transparent,
+            #000 18%,
+            #000 82%,
+            transparent
+        );
 
     pointer-events: none;
+
+    animation:
+        gridMove 18s linear infinite;
+
+}
+
+
+@keyframes gridMove {
+
+    from {
+
+        transform:
+            translateY(0);
+
+    }
+
+    to {
+
+        transform:
+            translateY(32px);
+
+    }
 
 }
 
 
 /* =====================================================
-   RED GLOW
+   AMBIENT RED GLOW
 ===================================================== */
 
 body::after {
@@ -134,15 +182,365 @@ body::after {
 
     position: fixed;
 
-    width: 350px;
+    width: 320px;
+    height: 320px;
 
-    height: 350px;
+    border-radius: 50%;
 
     background: #ff003c;
 
-    filter: blur(160px);
+    filter: blur(150px);
 
-    opacity: 0.12;
+    opacity: .11;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    pointer-events: none;
+
+    animation:
+        ambientPulse 4s ease-in-out infinite;
+
+}
+
+
+@keyframes ambientPulse {
+
+    0%,
+    100% {
+
+        opacity: .07;
+
+        transform:
+            translate(-50%, -50%)
+            scale(.9);
+
+    }
+
+    50% {
+
+        opacity: .15;
+
+        transform:
+            translate(-50%, -50%)
+            scale(1.1);
+
+    }
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particles {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+}
+
+
+.particles span {
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: #ff174d;
+
+    box-shadow:
+        0 0 8px #ff174d;
+
+    opacity: .5;
+
+    animation:
+        particleFloat linear infinite;
+
+}
+
+
+.particles span:nth-child(1) {
+
+    left: 10%;
+    top: 80%;
+
+    animation-duration: 8s;
+
+}
+
+
+.particles span:nth-child(2) {
+
+    left: 25%;
+    top: 60%;
+
+    animation-duration: 11s;
+
+}
+
+
+.particles span:nth-child(3) {
+
+    left: 42%;
+    top: 90%;
+
+    animation-duration: 7s;
+
+}
+
+
+.particles span:nth-child(4) {
+
+    left: 67%;
+    top: 70%;
+
+    animation-duration: 10s;
+
+}
+
+
+.particles span:nth-child(5) {
+
+    left: 83%;
+    top: 85%;
+
+    animation-duration: 9s;
+
+}
+
+
+.particles span:nth-child(6) {
+
+    left: 92%;
+    top: 40%;
+
+    animation-duration: 12s;
+
+}
+
+
+@keyframes particleFloat {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+
+    }
+
+    20% {
+
+        opacity: .7;
+
+    }
+
+    80% {
+
+        opacity: .5;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-100vh)
+            scale(1.5);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   FULL SCREEN WRAPPER
+===================================================== */
+
+.panel-wrap {
+
+    width: 100%;
+
+    height: 100dvh;
+
+    min-height: 100dvh;
+
+    position: relative;
+
+    z-index: 2;
+
+    animation:
+        panelIn .7s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+@keyframes panelIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(.98);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   OUTER FRAME
+===================================================== */
+
+.panel-glow {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   FULL SCREEN PANEL
+===================================================== */
+
+.panel {
+
+    width: 100%;
+
+    height: 100dvh;
+
+    min-height: 100dvh;
+
+    padding:
+
+        max(
+            28px,
+            env(safe-area-inset-top)
+        )
+
+        18px
+
+        max(
+            20px,
+            env(safe-area-inset-bottom)
+        );
+
+    border-radius: 0;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(15,15,19,.97),
+            rgba(3,3,6,.99)
+        );
+
+    border: none;
+
+    position: relative;
+
+    overflow: hidden;
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
+
+}
+
+
+/* =====================================================
+   TOP NEON LINE
+===================================================== */
+
+.panel::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff003c 20%,
+            #ff174d 50%,
+            #ff003c 80%,
+            transparent
+        );
+
+    box-shadow:
+
+        0 0 8px #ff174d,
+
+        0 0 20px
+        rgba(255,0,55,.7);
+
+}
+
+
+/* =====================================================
+   CORNER GLOW
+===================================================== */
+
+.panel::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -120px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,0,55,.08);
+
+    filter:
+        blur(30px);
 
     pointer-events: none;
 
@@ -150,43 +548,106 @@ body::after {
 
 
 /* =====================================================
-   MAIN PANEL
+   HEADER
 ===================================================== */
 
-.panel {
+.header {
 
-    width: min(92%, 440px);
+    width: 100%;
 
-    padding: 26px 20px 22px;
+    max-width: 480px;
+
+    margin:
+        0 auto;
+
+    text-align: center;
 
     position: relative;
 
     z-index: 2;
 
-    border-radius: 24px;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding:
+        5px 11px;
+
+    margin-bottom: 10px;
+
+    border-radius: 30px;
 
     background:
-
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.075),
-            rgba(255,255,255,0.015)
-        );
+        rgba(255,0,55,.07);
 
     border:
-        1px solid rgba(255,0,55,0.35);
+        1px solid
+        rgba(255,0,55,.20);
 
-    backdrop-filter: blur(22px);
+    color:
+        rgba(255,255,255,.55);
 
-    -webkit-backdrop-filter: blur(22px);
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+}
+
+
+.status-dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #ff174d;
 
     box-shadow:
 
-        0 0 45px rgba(0,0,0,0.70),
+        0 0 6px #ff174d,
 
-        0 0 35px rgba(255,0,55,0.10),
+        0 0 12px #ff174d;
 
-        inset 0 0 30px rgba(255,255,255,0.015);
+    animation:
+        statusPulse 1.5s infinite;
+
+}
+
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+
+        opacity: .45;
+
+        transform:
+            scale(.8);
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.2);
+
+    }
 
 }
 
@@ -197,23 +658,28 @@ body::after {
 
 .brand {
 
-    text-align: center;
+    font-size: 31px;
 
-    font-size: 29px;
-
-    font-weight: 900;
+    font-weight: 950;
 
     letter-spacing: 1px;
 
-    color: #ffffff;
+    line-height: 1.15;
+
+    color: #fff;
 
     text-shadow:
 
-        0 0 8px rgba(255,0,55,0.9),
+        0 0 7px
+        rgba(255,0,55,.9),
 
-        0 0 18px rgba(255,0,55,0.7),
+        0 0 18px
+        rgba(255,0,55,.65),
 
-        0 0 35px rgba(255,0,55,0.45);
+        0 0 38px
+        rgba(255,0,55,.35);
+
+    display: inline-block;
 
 }
 
@@ -228,7 +694,59 @@ body::after {
 
         0 0 18px #ff174d,
 
-        0 0 30px rgba(255,23,77,0.8);
+        0 0 32px
+        rgba(255,23,77,.8);
+
+}
+
+
+/* =====================================================
+   BRAND LINE
+===================================================== */
+
+.brand-line {
+
+    width: 55px;
+
+    height: 2px;
+
+    margin:
+        9px auto 0;
+
+    background: #ff174d;
+
+    border-radius: 5px;
+
+    box-shadow:
+
+        0 0 7px #ff174d,
+
+        0 0 15px #ff174d;
+
+    animation:
+        linePulse 2s ease-in-out infinite;
+
+}
+
+
+@keyframes linePulse {
+
+    0%,
+    100% {
+
+        width: 35px;
+
+        opacity: .5;
+
+    }
+
+    50% {
+
+        width: 75px;
+
+        opacity: 1;
+
+    }
 
 }
 
@@ -239,17 +757,16 @@ body::after {
 
 .subtitle {
 
-    text-align: center;
+    margin-top: 9px;
 
-    margin-top: 7px;
+    font-size: 9px;
 
-    font-size: 10px;
+    font-weight: 800;
 
-    font-weight: 700;
+    letter-spacing: 3.5px;
 
-    letter-spacing: 3px;
-
-    color: rgba(255,255,255,0.42);
+    color:
+        rgba(255,255,255,.38);
 
 }
 
@@ -262,22 +779,54 @@ body::after {
 
     width: 100%;
 
+    max-width: 480px;
+
     height: 1px;
 
-    margin: 21px 0;
+    margin:
+        23px auto 18px;
 
     background:
 
         linear-gradient(
             90deg,
             transparent,
-            #ff174d,
+            rgba(255,23,77,.9),
             transparent
         );
 
     box-shadow:
+        0 0 12px
+        rgba(255,0,55,.55);
 
-        0 0 12px rgba(255,0,55,0.65);
+    position: relative;
+
+}
+
+
+.separator::after {
+
+    content: "◆";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: #ff174d;
+
+    font-size: 7px;
+
+    text-shadow:
+        0 0 8px #ff174d;
+
+    background: #08080b;
+
+    padding:
+        0 7px;
 
 }
 
@@ -287,6 +836,13 @@ body::after {
 ===================================================== */
 
 .button-list {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    margin:
+        0 auto;
 
     display: flex;
 
@@ -303,50 +859,82 @@ body::after {
 
 .action-button {
 
-    position: relative;
-
     width: 100%;
 
-    min-height: 70px;
+    min-height: 72px;
 
     display: flex;
 
     align-items: center;
 
-    padding: 0 16px;
+    padding:
+        0 13px 0 14px;
 
-    border-radius: 15px;
+    border-radius: 17px;
 
     border:
-        1px solid rgba(255,0,55,0.30);
+        1px solid
+        rgba(255,255,255,.07);
 
     background:
 
         linear-gradient(
             135deg,
-            rgba(255,255,255,0.065),
-            rgba(255,255,255,0.012)
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.018)
         );
 
-    color: #ffffff;
+    color: #fff;
 
     cursor: pointer;
 
     overflow: hidden;
 
+    position: relative;
+
+    text-align: left;
+
     transition:
 
-        transform .20s ease,
+        transform .18s ease,
 
-        border-color .20s ease,
+        border-color .18s ease,
 
-        box-shadow .20s ease,
+        box-shadow .18s ease,
 
-        background .20s ease;
+        background .18s ease;
 
     box-shadow:
 
-        0 7px 20px rgba(0,0,0,0.35);
+        0 8px 22px
+        rgba(0,0,0,.30);
+
+}
+
+
+/* =====================================================
+   TOP LINE
+===================================================== */
+
+.action-button .top-line {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 18px;
+    right: 18px;
+
+    height: 1px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,23,77,.45),
+            transparent
+        );
 
 }
 
@@ -363,22 +951,30 @@ body::after {
 
     left: 0;
 
-    top: 14px;
+    top: 12px;
 
     width: 3px;
 
-    height: 42px;
-
-    background: #ff174d;
+    height: 44px;
 
     border-radius:
         0 5px 5px 0;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            #ff003c,
+            #ff174d,
+            #ff003c
+        );
 
     box-shadow:
 
         0 0 8px #ff174d,
 
-        0 0 18px #ff174d;
+        0 0 18px
+        rgba(255,23,77,.8);
 
 }
 
@@ -393,109 +989,118 @@ body::after {
 
     position: absolute;
 
-    top: 0;
+    top: -20%;
 
-    left: -130%;
+    left: -120%;
 
-    width: 90%;
+    width: 70%;
 
-    height: 100%;
+    height: 140%;
 
     background:
 
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,0,55,0.16),
+            rgba(255,0,55,.15),
+            rgba(255,255,255,.07),
             transparent
         );
 
     transform:
         skewX(-20deg);
 
-    transition: .6s ease;
+    transition:
+        left .65s ease;
+
+    pointer-events: none;
 
 }
 
 
 .action-button:hover::after {
 
-    left: 130%;
+    left: 140%;
 
 }
 
 
 /* =====================================================
-   FILLED ICON BOX
+   ICON
 ===================================================== */
 
 .icon-box {
 
-    width: 45px;
+    width: 44px;
+    height: 44px;
 
-    height: 45px;
+    min-width: 44px;
 
-    min-width: 45px;
+    margin-right: 13px;
 
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
-    margin-right: 14px;
+    border-radius: 13px;
 
-    border-radius: 12px;
+    background:
 
-    background: #ff174d;
+        linear-gradient(
+            145deg,
+            #ff174d,
+            #c90035
+        );
 
-    color: #ffffff;
-
-    box-shadow:
-
-        0 0 10px rgba(255,0,55,0.35),
-
-        0 0 20px rgba(255,0,55,0.12),
-
-        inset 0 -5px 10px rgba(0,0,0,0.18);
+    color: #fff;
 
     position: relative;
 
     z-index: 2;
 
+    box-shadow:
+
+        0 0 12px
+        rgba(255,0,55,.35),
+
+        0 5px 12px
+        rgba(0,0,0,.35),
+
+        inset 0 1px 0
+        rgba(255,255,255,.22);
+
+    transition:
+        transform .18s ease;
+
 }
 
 
-/* =====================================================
-   SVG FILLED ICON
-===================================================== */
-
 .icon-box svg {
 
-    width: 23px;
-
-    height: 23px;
+    width: 21px;
+    height: 21px;
 
     fill: currentColor;
 
     filter:
-
         drop-shadow(
-            0 2px 3px rgba(0,0,0,0.35)
+            0 2px 3px
+            rgba(0,0,0,.35)
         );
 
 }
 
 
 /* =====================================================
-   TEXT AREA
+   TEXT
 ===================================================== */
 
 .text-area {
 
     flex: 1;
 
-    text-align: left;
+    min-width: 0;
 
     position: relative;
 
@@ -506,13 +1111,19 @@ body::after {
 
 .title {
 
-    font-size: 15px;
+    font-size: 14px;
 
-    font-weight: 800;
+    font-weight: 850;
 
-    line-height: 1.3;
+    line-height: 1.35;
 
-    color: #ffffff;
+    color: #fff;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 
 }
 
@@ -521,10 +1132,18 @@ body::after {
 
     margin-top: 4px;
 
-    font-size: 10px;
+    font-size: 9px;
+
+    line-height: 1.4;
 
     color:
-        rgba(255,255,255,0.42);
+        rgba(255,255,255,.38);
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 
 }
 
@@ -535,24 +1154,28 @@ body::after {
 
 .arrow {
 
-    width: 28px;
+    width: 29px;
+    height: 29px;
 
-    height: 28px;
+    min-width: 29px;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+    justify-content: center;
 
     border-radius: 50%;
 
     background:
-        rgba(255,0,55,0.10);
+        rgba(255,0,55,.08);
+
+    border:
+        1px solid
+        rgba(255,23,77,.15);
 
     color: #ff174d;
 
-    font-size: 22px;
+    font-size: 21px;
 
     font-weight: 900;
 
@@ -560,38 +1183,85 @@ body::after {
 
     z-index: 2;
 
-    transition: .20s ease;
+    transition:
+        transform .2s ease,
+        background .2s ease;
 
     text-shadow:
-
-        0 0 10px rgba(255,0,55,0.7);
+        0 0 9px #ff174d;
 
 }
 
 
 /* =====================================================
-   PRESS EFFECT
+   HOVER
 ===================================================== */
 
-.action-button:active {
+.action-button:hover {
 
-    transform: scale(0.96);
+    transform:
+        translateY(-2px);
 
-    border-color: #ff174d;
+    border-color:
+        rgba(255,23,77,.42);
 
     background:
 
         linear-gradient(
             135deg,
-            rgba(255,0,55,0.18),
-            rgba(255,255,255,0.025)
+            rgba(255,0,55,.10),
+            rgba(255,255,255,.025)
         );
 
     box-shadow:
 
-        0 0 25px rgba(255,0,55,0.25),
+        0 12px 30px
+        rgba(0,0,0,.42),
 
-        inset 0 0 20px rgba(255,0,55,0.08);
+        0 0 22px
+        rgba(255,0,55,.10);
+
+}
+
+
+.action-button:hover .icon-box {
+
+    transform:
+        scale(1.06);
+
+}
+
+
+.action-button:hover .arrow {
+
+    transform:
+        translateX(4px);
+
+    background:
+        rgba(255,0,55,.18);
+
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.action-button:active {
+
+    transform:
+        scale(.965);
+
+    border-color:
+        #ff174d;
+
+    box-shadow:
+
+        0 0 28px
+        rgba(255,0,55,.25),
+
+        inset 0 0 22px
+        rgba(255,0,55,.08);
 
 }
 
@@ -599,7 +1269,7 @@ body::after {
 .action-button:active .arrow {
 
     transform:
-        translateX(4px);
+        translateX(5px);
 
 }
 
@@ -615,16 +1285,17 @@ body::after {
     border-radius: 50%;
 
     background:
-        rgba(255,255,255,0.20);
+        rgba(255,255,255,.18);
 
-    transform: scale(0);
+    transform:
+        scale(0);
 
     animation:
         ripple .55s linear;
 
     pointer-events: none;
 
-    z-index: 5;
+    z-index: 10;
 
 }
 
@@ -649,55 +1320,190 @@ body::after {
 
 .footer {
 
+    width: 100%;
+
+    max-width: 480px;
+
+    margin:
+        16px auto 0;
+
     text-align: center;
 
-    margin-top: 18px;
+    font-size: 8px;
 
-    font-size: 9px;
+    font-weight: 700;
 
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
 
     color:
-        rgba(255,255,255,0.23);
+        rgba(255,255,255,.20);
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.footer span {
+
+    color:
+        rgba(255,23,77,.65);
 
 }
 
 
 /* =====================================================
-   MOBILE
+   TALL SCREEN
+===================================================== */
+
+@media (min-height: 750px) {
+
+    .panel {
+
+        padding-top:
+            max(
+                45px,
+                env(safe-area-inset-top)
+            );
+
+    }
+
+    .separator {
+
+        margin-top: 26px;
+
+        margin-bottom: 21px;
+
+    }
+
+    .button-list {
+
+        gap: 14px;
+
+    }
+
+    .action-button {
+
+        min-height: 76px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL SCREEN
+===================================================== */
+
+@media (max-height: 700px) {
+
+    .panel {
+
+        padding-top:
+            max(
+                20px,
+                env(safe-area-inset-top)
+            );
+
+    }
+
+    .separator {
+
+        margin-top: 17px;
+
+        margin-bottom: 13px;
+
+    }
+
+    .button-list {
+
+        gap: 9px;
+
+    }
+
+    .action-button {
+
+        min-height: 61px;
+
+    }
+
+    .icon-box {
+
+        width: 39px;
+        height: 39px;
+
+        min-width: 39px;
+
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL WIDTH
 ===================================================== */
 
 @media (max-width: 380px) {
 
     .panel {
 
-        padding:
-            21px 15px;
+        padding-left: 14px;
+
+        padding-right: 14px;
 
     }
-
 
     .brand {
 
-        font-size: 25px;
+        font-size: 27px;
 
     }
 
+    .subtitle {
+
+        font-size: 8px;
+
+        letter-spacing: 2.7px;
+
+    }
 
     .action-button {
 
-        min-height: 64px;
+        border-radius: 15px;
 
     }
 
+    .title {
 
-    .icon-box {
+        font-size: 13px;
 
-        width: 41px;
+    }
 
-        height: 41px;
+    .description {
 
-        min-width: 41px;
+        font-size: 8px;
+
+    }
+
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
 
     }
 
@@ -712,303 +1518,367 @@ body::after {
 
 
 <!-- =====================================================
-     MAIN PANEL
+     PARTICLES
 ===================================================== -->
 
-<div class="panel">
-
-
-    <!-- BRAND -->
-
-    <div class="brand">
-
-        VaiperX<span>🐔 ไก่โค้ด</span>
-
-    </div>
-
-
-    <!-- SUBTITLE -->
-
-    <div class="subtitle">
-
-        IOS INSTALLATION CENTER
-
-    </div>
-
-
-    <!-- SEPARATOR -->
-
-    <div class="separator"></div>
-
-
-    <!-- =================================================
-         BUTTONS
-    ================================================== -->
-
-    <div class="button-list">
-
-
-        <!-- =============================================
-             1. คลิปสอนลงไอดีโค้ด IOS
-             รอลิงก์
-        ============================================== -->
-
-        <button
-            class="action-button"
-            onclick="openLink('', this)"
-        >
-
-            <div class="icon-box">
-
-                <!-- PLAY FILLED -->
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                    M8 5.14v13.72
-                    c0 .78.85 1.26 1.54.82
-                    l10.12-6.86
-                    a.98.98 0 0 0 0-1.64
-                    L9.54 4.32
-                    A.98.98 0 0 0 8 5.14Z
-                    "/>
-
-                </svg>
-
-            </div>
-
-
-            <div class="text-area">
-
-                <div class="title">
-
-                    คลิปสอนลงไอดีโค้ด IOS
-
-                </div>
-
-                <div class="description">
-
-                    ดูวิธีติดตั้งและใช้งานแบบละเอียด
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow">
-
-                ›
-
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             2. เว็บลงโค้ด
-        ============================================== -->
-
-        <button
-            class="action-button"
-            onclick="openLink(
-                'http://154.215.14.218:8080/',
-                this
-            )"
-        >
-
-            <div class="icon-box">
-
-                <!-- GLOBE FILLED -->
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                    M12 2
-                    C6.48 2 2 6.48 2 12
-                    s4.48 10 10 10
-                    10-4.48 10-10
-                    S17.52 2 12 2Zm6.92 9h-3.03
-                    a15.8 15.8 0 0 0-1.22-5.04
-                    A8.04 8.04 0 0 1 18.92 11ZM12 4
-                    c.83 1.2 1.55 3.13 1.82 7h-3.64
-                    C10.45 7.13 11.17 5.2 12 4ZM9.33 5.96
-                    A15.8 15.8 0 0 0 8.11 11H5.08
-                    a8.04 8.04 0 0 1 4.25-5.04ZM5.08 13h3.03
-                    c.15 1.9.57 3.63 1.22 5.04
-                    A8.04 8.04 0 0 1 5.08 13ZM12 20
-                    c-.83-1.2-1.55-3.13-1.82-7h3.64
-                    c-.27 3.87-.99 5.8-1.82 7Zm2.67-1.96
-                    c.65-1.41 1.07-3.14 1.22-5.04h3.03
-                    a8.04 8.04 0 0 1-4.25 5.04Z
-                    "/>
-
-                </svg>
-
-            </div>
-
-
-            <div class="text-area">
-
-                <div class="title">
-
-                    เว็บลงโค้ด
-
-                </div>
-
-                <div class="description">
-
-                    เปิดเว็บไซต์สำหรับลงไอดีโค้ด
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow">
-
-                ›
-
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             3. ลิ้ง QR Code
-        ============================================== -->
-
-        <button
-            class="action-button"
-            onclick="openLink(
-                'https://img1.pic.in.th/images/image929bf9e127afb92b.png',
-                this
-            )"
-        >
-
-            <div class="icon-box">
-
-                <!-- QR FILLED -->
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                    M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h2v2h-2v-2Zm3 0h4v2h-4v-2Zm-3 4h2v3h-2v-3Zm3-2h2v2h-2v-2Zm2 2h2v3h-2v-3Zm-5-1h2v1h-2v-1Z
-                    "/>
-
-                </svg>
-
-            </div>
-
-
-            <div class="text-area">
-
-                <div class="title">
-
-                    ลิ้ง QR Code
-
-                </div>
-
-                <div class="description">
-
-                    เปิด QR Code สำหรับใช้งาน
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow">
-
-                ›
-
-            </div>
-
-        </button>
-
-
-
-        <!-- =============================================
-             4. ลิ้งแอปที่ใช้ลง
-        ============================================== -->
-
-        <button
-            class="action-button"
-            onclick="openLink(
-                'https://apps.apple.com/th/app/potatso/id1239860606?l=th',
-                this
-            )"
-        >
-
-            <div class="icon-box">
-
-                <!-- DOWNLOAD FILLED -->
-
-                <svg viewBox="0 0 24 24">
-
-                    <path d="
-                    M12 3
-                    a1 1 0 0 1 1 1v8.59
-                    l2.3-2.3
-                    a1 1 0 1 1 1.4 1.42
-                    l-4 4
-                    a1 1 0 0 1-1.4 0
-                    l-4-4
-                    a1 1 0 1 1 1.4-1.42
-                    l2.3 2.3V4
-                    a1 1 0 0 1 1-1ZM4 17
-                    a1 1 0 0 1 1 1h14
-                    a1 1 0 1 1 0 2H5
-                    a3 3 0 0 1-3-3v-1
-                    a1 1 0 1 1 2 0v1Z
-                    "/>
-
-                </svg>
-
-            </div>
-
-
-            <div class="text-area">
-
-                <div class="title">
-
-                    ลิ้งแอปที่ใช้ลง
-
-                </div>
-
-                <div class="description">
-
-                    ดาวน์โหลดแอปสำหรับติดตั้ง
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow">
-
-                ›
-
-            </div>
-
-        </button>
-
-
-    </div>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        VAIPERX • IOS INSTALLATION SYSTEM
-
-    </div>
-
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 
 </div>
 
+
+<!-- =====================================================
+     FULL SCREEN PANEL
+===================================================== -->
+
+<div class="panel-wrap">
+
+
+    <div class="panel-glow"></div>
+
+
+    <main class="panel">
+
+
+        <!-- =============================================
+             HEADER
+        ============================================== -->
+
+        <div class="header">
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+
+            <div class="brand">
+
+                VaiperX<span>🐔 ไก่โค้ด</span>
+
+            </div>
+
+
+            <div class="brand-line"></div>
+
+
+            <div class="subtitle">
+
+                IOS INSTALLATION CENTER
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =============================================
+             SEPARATOR
+        ============================================== -->
+
+        <div class="separator"></div>
+
+
+        <!-- =============================================
+             BUTTON LIST
+        ============================================== -->
+
+        <div class="button-list">
+
+
+            <!-- =========================================
+                 1. YOUTUBE
+            ========================================== -->
+
+            <button
+                class="action-button"
+                onclick="openLink(
+                    'https://youtu.be/_UcO8z42oY4?si=s4s4JPg7af7YxwAO',
+                    event,
+                    this
+                )"
+            >
+
+                <span class="top-line"></span>
+
+
+                <div class="icon-box">
+
+                    <!-- PLAY ICON -->
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="
+                        M8 5.14v13.72
+                        c0 .78.85 1.26 1.54.82
+                        l10.12-6.86
+                        a.98.98 0 0 0 0-1.64
+                        L9.54 4.32
+                        A.98.98 0 0 0 8 5.14Z
+                        "/>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="text-area">
+
+                    <div class="title">
+
+                        คลิปสอนลงไอดีโค้ด IOS
+
+                    </div>
+
+                    <div class="description">
+
+                        ดูวิธีติดตั้งและใช้งานแบบละเอียด
+
+                    </div>
+
+                </div>
+
+
+                <div class="arrow">
+
+                    ›
+
+                </div>
+
+            </button>
+
+
+            <!-- =========================================
+                 2. WEB
+            ========================================== -->
+
+            <button
+                class="action-button"
+                onclick="openLink(
+                    'http://154.215.14.218:8080/',
+                    event,
+                    this
+                )"
+            >
+
+                <span class="top-line"></span>
+
+
+                <div class="icon-box">
+
+                    <!-- GLOBE ICON -->
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="
+                        M12 2
+                        C6.48 2 2 6.48 2 12
+                        s4.48 10 10 10
+                        10-4.48 10-10
+                        S17.52 2 12 2Zm6.92 9h-3.03
+                        a15.8 15.8 0 0 0-1.22-5.04
+                        A8.04 8.04 0 0 1 18.92 11ZM12 4
+                        c.83 1.2 1.55 3.13 1.82 7h-3.64
+                        C10.45 7.13 11.17 5.2 12 4ZM9.33 5.96
+                        A15.8 15.8 0 0 0 8.11 11H5.08
+                        a8.04 8.04 0 0 1 4.25-5.04ZM5.08 13h3.03
+                        c.15 1.9.57 3.63 1.22 5.04
+                        A8.04 8.04 0 0 1 5.08 13ZM12 20
+                        c-.83-1.2-1.55-3.13-1.82-7h3.64
+                        c-.27 3.87-.99 5.8-1.82 7Zm2.67-1.96
+                        c.65-1.41 1.07-3.14 1.22-5.04h3.03
+                        a8.04 8.04 0 0 1-4.25 5.04Z
+                        "/>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="text-area">
+
+                    <div class="title">
+
+                        เว็บลงโค้ด
+
+                    </div>
+
+                    <div class="description">
+
+                        เปิดเว็บไซต์สำหรับลงไอดีโค้ด
+
+                    </div>
+
+                </div>
+
+
+                <div class="arrow">
+
+                    ›
+
+                </div>
+
+            </button>
+
+
+            <!-- =========================================
+                 3. QR CODE
+            ========================================== -->
+
+            <button
+                class="action-button"
+                onclick="openLink(
+                    'https://img1.pic.in.th/images/image929bf9e127afb92b.png',
+                    event,
+                    this
+                )"
+            >
+
+                <span class="top-line"></span>
+
+
+                <div class="icon-box">
+
+                    <!-- QR ICON -->
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="
+                        M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h2v2h-2v-2Zm3 0h4v2h-4v-2Zm-3 4h2v3h-2v-3Zm3-2h2v2h-2v-2Zm2 2h2v3h-2v-3Zm-5-1h2v1h-2v-1Z
+                        "/>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="text-area">
+
+                    <div class="title">
+
+                        ลิ้ง QR Code
+
+                    </div>
+
+                    <div class="description">
+
+                        เปิด QR Code สำหรับใช้งาน
+
+                    </div>
+
+                </div>
+
+
+                <div class="arrow">
+
+                    ›
+
+                </div>
+
+            </button>
+
+
+            <!-- =========================================
+                 4. APP
+            ========================================== -->
+
+            <button
+                class="action-button"
+                onclick="openLink(
+                    'https://apps.apple.com/th/app/potatso/id1239860606?l=th',
+                    event,
+                    this
+                )"
+            >
+
+                <span class="top-line"></span>
+
+
+                <div class="icon-box">
+
+                    <!-- DOWNLOAD ICON -->
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="
+                        M12 3
+                        a1 1 0 0 1 1 1v8.59
+                        l2.3-2.3
+                        a1 1 0 1 1 1.4 1.42
+                        l-4 4
+                        a1 1 0 0 1-1.4 0
+                        l-4-4
+                        a1 1 0 1 1 1.4-1.42
+                        l2.3 2.3V4
+                        a1 1 0 0 1 1-1ZM4 17
+                        a1 1 0 0 1 1 1h14
+                        a1 1 0 1 1 0 2H5
+                        a3 3 0 0 1-3-3v-1
+                        a1 1 0 1 1 2 0v1Z
+                        "/>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="text-area">
+
+                    <div class="title">
+
+                        ลิ้งแอปที่ใช้ลง
+
+                    </div>
+
+                    <div class="description">
+
+                        ดาวน์โหลดแอปสำหรับติดตั้ง
+
+                    </div>
+
+                </div>
+
+
+                <div class="arrow">
+
+                    ›
+
+                </div>
+
+            </button>
+
+
+        </div>
+
+
+        <!-- =============================================
+             FOOTER
+        ============================================== -->
+
+        <div class="footer">
+
+            <span>VAIPERX</span>
+
+            &nbsp;•&nbsp;
+
+            IOS INSTALLATION SYSTEM
+
+        </div>
+
+
+    </main>
+
+</div>
 
 
 <script>
@@ -1017,14 +1887,22 @@ body::after {
    OPEN LINK
 ===================================================== */
 
-function openLink(url, button) {
+function openLink(
+    url,
+    event,
+    button
+) {
 
-    const e = window.event;
 
-    createRipple(e, button);
+    /* CREATE RIPPLE */
+
+    createRipple(
+        event,
+        button
+    );
 
 
-    /* ถ้ายังไม่มีลิงก์ */
+    /* NO LINK */
 
     if (!url) {
 
@@ -1033,7 +1911,7 @@ function openLink(url, button) {
     }
 
 
-    /* เปิดลิงก์ */
+    /* OPEN LINK */
 
     setTimeout(() => {
 
@@ -1051,9 +1929,19 @@ function openLink(url, button) {
    RIPPLE EFFECT
 ===================================================== */
 
-function createRipple(e, button) {
+function createRipple(
+    event,
+    button
+) {
 
-    if (!e) return;
+    if (
+        !event ||
+        !button
+    ) {
+
+        return;
+
+    }
 
 
     const rect =
@@ -1061,10 +1949,14 @@ function createRipple(e, button) {
 
 
     const ripple =
-        document.createElement("span");
+        document.createElement(
+            "span"
+        );
 
 
-    ripple.classList.add("ripple");
+    ripple.classList.add(
+        "ripple"
+    );
 
 
     const size =
@@ -1084,7 +1976,7 @@ function createRipple(e, button) {
 
     ripple.style.left =
         (
-            e.clientX -
+            event.clientX -
             rect.left -
             size / 2
         ) + "px";
@@ -1092,13 +1984,15 @@ function createRipple(e, button) {
 
     ripple.style.top =
         (
-            e.clientY -
+            event.clientY -
             rect.top -
             size / 2
         ) + "px";
 
 
-    button.appendChild(ripple);
+    button.appendChild(
+        ripple
+    );
 
 
     setTimeout(() => {
@@ -1116,10 +2010,43 @@ function createRipple(e, button) {
 
 document.addEventListener(
     "contextmenu",
-    function(e) {
+    function(event) {
 
-        e.preventDefault();
+        event.preventDefault();
 
+    }
+);
+
+
+/* =====================================================
+   PREVENT DOUBLE TAP ZOOM
+===================================================== */
+
+let lastTouchEnd = 0;
+
+
+document.addEventListener(
+    "touchend",
+    function(event) {
+
+        const now =
+            Date.now();
+
+
+        if (
+            now - lastTouchEnd <= 300
+        ) {
+
+            event.preventDefault();
+
+        }
+
+
+        lastTouchEnd = now;
+
+    },
+    {
+        passive: false
     }
 );
 
