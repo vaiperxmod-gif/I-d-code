@@ -9,1066 +9,794 @@
       content="width=device-width,
       initial-scale=1.0,
       maximum-scale=1.0,
-      user-scalable=no,
-      viewport-fit=cover">
+      user-scalable=no">
 
-<!-- =====================================================
-     APP ICON
-===================================================== -->
+<meta name="theme-color" content="#050505">
 
-<link rel="icon"
-      type="image/png"
-      href="https://i.postimg.cc/QdjXVTyn/E97688D9-07BD-44A8-AA03-619EB3DB6A9B.png">
-
-<link rel="apple-touch-icon"
-      href="https://i.postimg.cc/QdjXVTyn/E97688D9-07BD-44A8-AA03-619EB3DB6A9B.png">
-
-<meta name="apple-mobile-web-app-title"
-      content="VaiperX🐔 ไก่โค้ด">
-
-<meta name="apple-mobile-web-app-capable"
-      content="yes">
-
-<meta name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent">
-
-<meta name="theme-color"
-      content="#030305">
-
-<title>VaiperX🐔 ไก่โค้ด</title>
+<title>VaiperX IOS Installation Center</title>
 
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
-* {
-
-    margin: 0;
-    padding: 0;
-
-    box-sizing: border-box;
-
-    -webkit-tap-highlight-color: transparent;
-
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-
-/* =====================================================
-   HTML / BODY
-===================================================== */
-
-html,
-body {
-
-    width: 100%;
-    height: 100%;
-
-    min-height: 100%;
-
-    overflow: hidden;
-
+html{
+    width:100%;
+    min-height:100%;
+    background:#050505;
 }
 
+body{
 
-body {
+    width:100%;
+    min-height:100vh;
+
+    background:#050505;
+
+    color:white;
 
     font-family:
         Arial,
         "Noto Sans Thai",
         sans-serif;
 
-    background:
-
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255,0,60,.14),
-            transparent 38%
-        ),
-
-        radial-gradient(
-            circle at 0% 100%,
-            rgba(255,0,60,.08),
-            transparent 35%
-        ),
-
-        #030305;
-
-    color: #fff;
-
-    position: relative;
-
-    min-height: 100dvh;
-
-    padding: 0 !important;
+    overflow-x:hidden;
 
 }
 
 
-/* =====================================================
-   CYBER GRID
-===================================================== */
+/* =========================================================
+   BACKGROUND IMAGE
+========================================================= */
 
-body::before {
+body::before{
 
-    content: "";
+    content:"";
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
     background-image:
 
         linear-gradient(
-            rgba(255,255,255,.022) 1px,
-            transparent 1px
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.15)
         ),
 
-        linear-gradient(
-            90deg,
-            rgba(255,255,255,.022) 1px,
-            transparent 1px
+        url(
+            "https://i.postimg.cc/mksRjQXP/4D545010-7BA7-4BAE-A2BB-8DA73DE38FAB.png"
         );
+
+    background-position:
+        center top;
 
     background-size:
-        32px 32px;
+        cover;
 
-    mask-image:
+    background-repeat:
+        no-repeat;
 
-        linear-gradient(
-            to bottom,
-            transparent,
-            #000 18%,
-            #000 82%,
-            transparent
+    z-index:-10;
+
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 20%,
+            transparent 0%,
+            rgba(0,0,0,.08) 45%,
+            rgba(0,0,0,.38) 100%
         );
 
-    pointer-events: none;
+    pointer-events:none;
+
+    z-index:-9;
+
+}
+
+
+/* =========================================================
+   RED GLOW
+========================================================= */
+
+.red-glow{
+
+    position:fixed;
+
+    width:320px;
+    height:320px;
+
+    border-radius:50%;
+
+    background:#ff0000;
+
+    filter:blur(130px);
+
+    opacity:.10;
+
+    pointer-events:none;
+
+    z-index:-5;
 
     animation:
-        gridMove 18s linear infinite;
+        glowMove
+        8s ease-in-out infinite alternate;
 
 }
 
 
-@keyframes gridMove {
+.red-glow.left{
 
-    from {
-
-        transform:
-            translateY(0);
-
-    }
-
-    to {
-
-        transform:
-            translateY(32px);
-
-    }
+    left:-180px;
+    top:40%;
 
 }
 
 
-/* =====================================================
-   AMBIENT RED GLOW
-===================================================== */
+.red-glow.right{
 
-body::after {
+    right:-180px;
+    bottom:10%;
 
-    content: "";
-
-    position: fixed;
-
-    width: 320px;
-    height: 320px;
-
-    border-radius: 50%;
-
-    background: #ff003c;
-
-    filter: blur(150px);
-
-    opacity: .11;
-
-    top: 50%;
-    left: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    pointer-events: none;
-
-    animation:
-        ambientPulse 4s ease-in-out infinite;
+    animation-delay:2s;
 
 }
 
 
-@keyframes ambientPulse {
+@keyframes glowMove{
 
-    0%,
-    100% {
-
-        opacity: .07;
-
-        transform:
-            translate(-50%, -50%)
-            scale(.9);
-
+    from{
+        transform:translateY(-30px);
     }
 
-    50% {
-
-        opacity: .15;
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.1);
-
+    to{
+        transform:translateY(30px);
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PARTICLES
-===================================================== */
+========================================================= */
 
-.particles {
+.particle{
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    width:3px;
+    height:3px;
 
-    overflow: hidden;
+    border-radius:50%;
 
-    pointer-events: none;
-
-    z-index: 0;
-
-}
-
-
-.particles span {
-
-    position: absolute;
-
-    width: 2px;
-    height: 2px;
-
-    border-radius: 50%;
-
-    background: #ff174d;
+    background:#ff1b1b;
 
     box-shadow:
-        0 0 8px #ff174d;
+        0 0 6px #ff0000,
+        0 0 14px #ff0000;
 
-    opacity: .5;
+    pointer-events:none;
+
+    z-index:-3;
 
     animation:
-        particleFloat linear infinite;
+        floatParticle
+        linear infinite;
 
 }
 
 
-.particles span:nth-child(1) {
+.particle:nth-of-type(1){
+    left:8%;
+    top:80%;
+    animation-duration:7s;
+}
 
-    left: 10%;
-    top: 80%;
+.particle:nth-of-type(2){
+    left:20%;
+    top:65%;
+    animation-duration:9s;
+}
 
-    animation-duration: 8s;
+.particle:nth-of-type(3){
+    left:32%;
+    top:90%;
+    animation-duration:6s;
+}
 
+.particle:nth-of-type(4){
+    left:50%;
+    top:75%;
+    animation-duration:8s;
+}
+
+.particle:nth-of-type(5){
+    left:68%;
+    top:85%;
+    animation-duration:10s;
+}
+
+.particle:nth-of-type(6){
+    left:82%;
+    top:70%;
+    animation-duration:7s;
+}
+
+.particle:nth-of-type(7){
+    left:93%;
+    top:50%;
+    animation-duration:9s;
 }
 
 
-.particles span:nth-child(2) {
+@keyframes floatParticle{
 
-    left: 25%;
-    top: 60%;
-
-    animation-duration: 11s;
-
-}
-
-
-.particles span:nth-child(3) {
-
-    left: 42%;
-    top: 90%;
-
-    animation-duration: 7s;
-
-}
-
-
-.particles span:nth-child(4) {
-
-    left: 67%;
-    top: 70%;
-
-    animation-duration: 10s;
-
-}
-
-
-.particles span:nth-child(5) {
-
-    left: 83%;
-    top: 85%;
-
-    animation-duration: 9s;
-
-}
-
-
-.particles span:nth-child(6) {
-
-    left: 92%;
-    top: 40%;
-
-    animation-duration: 12s;
-
-}
-
-
-@keyframes particleFloat {
-
-    0% {
-
+    0%{
         transform:
-            translateY(0)
+            translateY(40px)
             scale(.5);
 
-        opacity: 0;
-
+        opacity:0;
     }
 
-    20% {
-
-        opacity: .7;
-
+    20%{
+        opacity:.8;
     }
 
-    80% {
-
-        opacity: .5;
-
+    80%{
+        opacity:.8;
     }
 
-    100% {
-
+    100%{
         transform:
-            translateY(-100vh)
-            scale(1.5);
+            translateY(-180px)
+            scale(1.3);
 
-        opacity: 0;
-
+        opacity:0;
     }
 
 }
 
 
-/* =====================================================
-   FULL SCREEN WRAPPER
-===================================================== */
+/* =========================================================
+   MAIN
+========================================================= */
 
-.panel-wrap {
+.page{
 
-    width: 100%;
+    width:100%;
 
-    height: 100dvh;
+    max-width:560px;
 
-    min-height: 100dvh;
+    min-height:100vh;
 
-    position: relative;
-
-    z-index: 2;
-
-    animation:
-        panelIn .7s cubic-bezier(.2,.8,.2,1);
-
-}
-
-
-@keyframes panelIn {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(25px)
-            scale(.98);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-
-/* =====================================================
-   OUTER FRAME
-===================================================== */
-
-.panel-glow {
-
-    display: none;
-
-}
-
-
-/* =====================================================
-   FULL SCREEN PANEL
-===================================================== */
-
-.panel {
-
-    width: 100%;
-
-    height: 100dvh;
-
-    min-height: 100dvh;
+    margin:
+        0 auto;
 
     padding:
+        15px
+        12px
+        28px;
 
-        max(
-            28px,
-            env(safe-area-inset-top)
-        )
-
-        18px
-
-        max(
-            20px,
-            env(safe-area-inset-bottom)
-        );
-
-    border-radius: 0;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(15,15,19,.97),
-            rgba(3,3,6,.99)
-        );
-
-    border: none;
-
-    position: relative;
-
-    overflow: hidden;
-
-    backdrop-filter:
-        blur(25px);
-
-    -webkit-backdrop-filter:
-        blur(25px);
+    position:relative;
 
 }
 
 
-/* =====================================================
-   TOP NEON LINE
-===================================================== */
+/* =========================================================
+   TOP LINE
+========================================================= */
 
-.panel::before {
+.top-line{
 
-    content: "";
+    width:80%;
 
-    position: absolute;
+    height:3px;
 
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    height: 2px;
+    margin:
+        0 auto 15px;
 
     background:
 
         linear-gradient(
             90deg,
             transparent,
-            #ff003c 20%,
-            #ff174d 50%,
-            #ff003c 80%,
+            #ff0000,
+            #ffffff,
+            #ff0000,
             transparent
         );
 
     box-shadow:
 
-        0 0 8px #ff174d,
-
-        0 0 20px
-        rgba(255,0,55,.7);
+        0 0 7px #ff0000,
+        0 0 20px #ff0000;
 
 }
 
 
-/* =====================================================
-   CORNER GLOW
-===================================================== */
+/* =========================================================
+   LOGO
+========================================================= */
 
-.panel::after {
+.logo-area{
 
-    content: "";
+    width:100%;
 
-    position: absolute;
+    display:flex;
 
-    width: 200px;
-    height: 200px;
+    justify-content:center;
 
-    right: -120px;
-    top: -100px;
+    align-items:center;
 
-    border-radius: 50%;
+    position:relative;
 
-    background:
-        rgba(255,0,55,.08);
+    margin-bottom:3px;
+
+}
+
+
+.logo-image{
+
+    width:
+        min(
+            92%,
+            500px
+        );
+
+    max-height:310px;
+
+    object-fit:contain;
+
+    display:block;
 
     filter:
-        blur(30px);
 
-    pointer-events: none;
+        drop-shadow(
+            0 0 6px
+            rgba(255,0,0,.65)
+        )
+
+        drop-shadow(
+            0 0 18px
+            rgba(255,0,0,.30)
+        );
 
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* =========================================================
+   CENTER TITLE
+========================================================= */
 
-.header {
+.center-title{
 
-    width: 100%;
+    width:100%;
 
-    max-width: 480px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
 
     margin:
-        0 auto;
+        7px 0 19px;
 
-    text-align: center;
+    font-size:
+        clamp(
+            9px,
+            2.8vw,
+            13px
+        );
 
-    position: relative;
+    font-weight:500;
 
-    z-index: 2;
+    letter-spacing:
+        clamp(
+            2px,
+            1vw,
+            5px
+        );
 
-}
-
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-.status {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding:
-        5px 11px;
-
-    margin-bottom: 10px;
-
-    border-radius: 30px;
-
-    background:
-        rgba(255,0,55,.07);
-
-    border:
-        1px solid
-        rgba(255,0,55,.20);
-
-    color:
-        rgba(255,255,255,.55);
-
-    font-size: 8px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-
-}
-
-
-.status-dot {
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #ff174d;
-
-    box-shadow:
-
-        0 0 6px #ff174d,
-
-        0 0 12px #ff174d;
-
-    animation:
-        statusPulse 1.5s infinite;
-
-}
-
-
-@keyframes statusPulse {
-
-    0%,
-    100% {
-
-        opacity: .45;
-
-        transform:
-            scale(.8);
-
-    }
-
-    50% {
-
-        opacity: 1;
-
-        transform:
-            scale(1.2);
-
-    }
-
-}
-
-
-/* =====================================================
-   BRAND
-===================================================== */
-
-.brand {
-
-    font-size: 31px;
-
-    font-weight: 950;
-
-    letter-spacing: 1px;
-
-    line-height: 1.15;
-
-    color: #fff;
+    color:#f5f5f5;
 
     text-shadow:
-
-        0 0 7px
-        rgba(255,0,55,.9),
-
-        0 0 18px
-        rgba(255,0,55,.65),
-
-        0 0 38px
-        rgba(255,0,55,.35);
-
-    display: inline-block;
+        0 0 7px #ff0000;
 
 }
 
 
-.brand span {
+.center-title::before,
+.center-title::after{
 
-    color: #ff174d;
+    content:"";
 
-    text-shadow:
+    height:2px;
 
-        0 0 8px #ff174d,
-
-        0 0 18px #ff174d,
-
-        0 0 32px
-        rgba(255,23,77,.8);
-
-}
-
-
-/* =====================================================
-   BRAND LINE
-===================================================== */
-
-.brand-line {
-
-    width: 55px;
-
-    height: 2px;
-
-    margin:
-        9px auto 0;
-
-    background: #ff174d;
-
-    border-radius: 5px;
-
-    box-shadow:
-
-        0 0 7px #ff174d,
-
-        0 0 15px #ff174d;
-
-    animation:
-        linePulse 2s ease-in-out infinite;
-
-}
-
-
-@keyframes linePulse {
-
-    0%,
-    100% {
-
-        width: 35px;
-
-        opacity: .5;
-
-    }
-
-    50% {
-
-        width: 75px;
-
-        opacity: 1;
-
-    }
-
-}
-
-
-/* =====================================================
-   SUBTITLE
-===================================================== */
-
-.subtitle {
-
-    margin-top: 9px;
-
-    font-size: 9px;
-
-    font-weight: 800;
-
-    letter-spacing: 3.5px;
-
-    color:
-        rgba(255,255,255,.38);
-
-}
-
-
-/* =====================================================
-   SEPARATOR
-===================================================== */
-
-.separator {
-
-    width: 100%;
-
-    max-width: 480px;
-
-    height: 1px;
-
-    margin:
-        23px auto 18px;
+    width:38px;
 
     background:
 
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,23,77,.9),
-            transparent
+            #ff1111
         );
 
     box-shadow:
-        0 0 12px
-        rgba(255,0,55,.55);
-
-    position: relative;
+        0 0 8px #ff0000;
 
 }
 
 
-.separator::after {
-
-    content: "◆";
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    color: #ff174d;
-
-    font-size: 7px;
-
-    text-shadow:
-        0 0 8px #ff174d;
-
-    background: #08080b;
-
-    padding:
-        0 7px;
-
-}
-
-
-/* =====================================================
-   BUTTON LIST
-===================================================== */
-
-.button-list {
-
-    width: 100%;
-
-    max-width: 480px;
-
-    margin:
-        0 auto;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 13px;
-
-}
-
-
-/* =====================================================
-   ACTION BUTTON
-===================================================== */
-
-.action-button {
-
-    width: 100%;
-
-    min-height: 72px;
-
-    display: flex;
-
-    align-items: center;
-
-    padding:
-        0 13px 0 14px;
-
-    border-radius: 17px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.07);
+.center-title::after{
 
     background:
 
         linear-gradient(
-            135deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.018)
+            90deg,
+            #ff1111,
+            transparent
         );
 
-    color: #fff;
+}
 
-    cursor: pointer;
 
-    overflow: hidden;
+/* =========================================================
+   MENU
+========================================================= */
 
-    position: relative;
+.menu{
 
-    text-align: left;
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.menu-button{
+
+    width:100%;
+
+    min-height:112px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    text-decoration:none;
+
+    color:white;
+
+    border-radius:20px;
+
+    background:
+
+        rgba(5,5,5,.45)
+
+        url(
+            "https://i.postimg.cc/90hVbG8R/6CB3A5F7-F5FF-4205-AC8F-C60EF7FAE356.png"
+        )
+
+        center / 100% 100%
+
+        no-repeat;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(255,0,0,.8)
+        );
 
     transition:
-
         transform .18s ease,
-
-        border-color .18s ease,
-
-        box-shadow .18s ease,
-
-        background .18s ease;
-
-    box-shadow:
-
-        0 8px 22px
-        rgba(0,0,0,.30);
+        filter .18s ease;
 
 }
 
 
-/* =====================================================
-   TOP LINE
-===================================================== */
+/* =========================================================
+   BUTTON HOVER
+========================================================= */
 
-.action-button .top-line {
-
-    position: absolute;
-
-    top: 0;
-
-    left: 18px;
-    right: 18px;
-
-    height: 1px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,23,77,.45),
-            transparent
-        );
-
-}
-
-
-/* =====================================================
-   LEFT RED BAR
-===================================================== */
-
-.action-button::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-
-    top: 12px;
-
-    width: 3px;
-
-    height: 44px;
-
-    border-radius:
-        0 5px 5px 0;
-
-    background:
-
-        linear-gradient(
-            to bottom,
-            #ff003c,
-            #ff174d,
-            #ff003c
-        );
-
-    box-shadow:
-
-        0 0 8px #ff174d,
-
-        0 0 18px
-        rgba(255,23,77,.8);
-
-}
-
-
-/* =====================================================
-   MOVING LIGHT
-===================================================== */
-
-.action-button::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: -20%;
-
-    left: -120%;
-
-    width: 70%;
-
-    height: 140%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,0,55,.15),
-            rgba(255,255,255,.07),
-            transparent
-        );
+.menu-button:hover{
 
     transform:
-        skewX(-20deg);
+        translateY(-2px);
 
-    transition:
-        left .65s ease;
+    filter:
 
-    pointer-events: none;
+        drop-shadow(
+            0 0 5px
+            rgba(255,0,0,1)
+        )
+
+        drop-shadow(
+            0 0 15px
+            rgba(255,0,0,.5)
+        );
 
 }
 
 
-.action-button:hover::after {
+.menu-button:active{
 
-    left: 140%;
+    transform:
+        scale(.965);
 
 }
 
 
-/* =====================================================
-   ICON
-===================================================== */
+/* =========================================================
+   BUTTON SHINE
+========================================================= */
 
-.icon-box {
+.menu-button .shine{
 
-    width: 44px;
-    height: 44px;
+    position:absolute;
 
-    min-width: 44px;
+    width:100px;
+    height:180%;
 
-    margin-right: 13px;
+    top:-40%;
 
-    display: flex;
+    left:-150px;
 
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 13px;
+    transform:
+        rotate(20deg);
 
     background:
 
         linear-gradient(
-            145deg,
-            #ff174d,
-            #c90035
+            90deg,
+            transparent,
+            rgba(255,255,255,.15),
+            transparent
         );
 
-    color: #fff;
+    pointer-events:none;
 
-    position: relative;
+    animation:
+        shineMove
+        5s linear infinite;
 
-    z-index: 2;
+}
 
-    box-shadow:
 
-        0 0 12px
-        rgba(255,0,55,.35),
+@keyframes shineMove{
 
-        0 5px 12px
-        rgba(0,0,0,.35),
+    0%{
+        left:-180px;
+    }
 
-        inset 0 1px 0
-        rgba(255,255,255,.22);
+    45%{
+        left:120%;
+    }
+
+    100%{
+        left:120%;
+    }
+
+}
+
+
+/* =========================================================
+   ICON AREA
+========================================================= */
+
+.icon-area{
+
+    width:88px;
+
+    min-width:88px;
+
+    height:88px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-left:14px;
+
+    margin-right:13px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+/* =========================================================
+   ICON IMAGE
+========================================================= */
+
+.icon-area img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+
+    filter:
+
+        drop-shadow(
+            0 0 5px
+            rgba(255,0,0,.7)
+        );
+
+}
+
+
+/* =========================================================
+   BUTTON CONTENT
+========================================================= */
+
+.button-content{
+
+    flex:1;
+
+    min-width:0;
+
+    position:relative;
+
+    z-index:2;
+
+    padding:
+        0 4px;
+
+}
+
+
+/* =========================================================
+   BUTTON TITLE
+========================================================= */
+
+.button-title{
+
+    font-size:
+        clamp(
+            18px,
+            5vw,
+            26px
+        );
+
+    line-height:1.15;
+
+    font-weight:900;
+
+    font-style:italic;
+
+    color:#ffffff;
+
+    text-shadow:
+
+        2px 2px 0
+        rgba(70,0,0,.95),
+
+        0 0 5px
+        rgba(255,255,255,.35),
+
+        0 0 9px
+        rgba(255,0,0,.65);
+
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.button-description{
+
+    margin-top:6px;
+
+    font-size:
+        clamp(
+            10px,
+            3vw,
+            14px
+        );
+
+    line-height:1.3;
+
+    font-weight:400;
+
+    color:#e4e4e4;
+
+    text-shadow:
+        0 1px 2px #000;
+
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.arrow-area{
+
+    width:67px;
+
+    min-width:67px;
+
+    height:67px;
+
+    margin-right:12px;
+
+    position:relative;
+
+    z-index:3;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+.arrow-area img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
+
+    filter:
+
+        drop-shadow(
+            0 0 5px
+            rgba(255,0,0,.8)
+        );
 
     transition:
         transform .18s ease;
@@ -1076,434 +804,398 @@ body::after {
 }
 
 
-.icon-box svg {
+.menu-button:hover
+.arrow-area img{
 
-    width: 21px;
-    height: 21px;
+    transform:
+        translateX(4px)
+        scale(1.04);
 
-    fill: currentColor;
+}
+
+
+/* =========================================================
+   BUTTON 2
+========================================================= */
+
+.button-2 .icon-area img{
+
+    width:82px;
+    height:82px;
+
+}
+
+
+/* =========================================================
+   BUTTON 3
+========================================================= */
+
+.button-3 .icon-area img{
+
+    width:83px;
+    height:83px;
+
+}
+
+
+/* =========================================================
+   BUTTON 4
+========================================================= */
+
+.button-4 .icon-area img{
+
+    width:83px;
+    height:83px;
+
+}
+
+
+/* =========================================================
+   BOTTOM SECTION
+========================================================= */
+
+.bottom-section{
+
+    width:100%;
+
+    position:relative;
+
+    margin-top:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+
+/* =========================================================
+   BOTTOM FRAME
+========================================================= */
+
+.bottom-frame{
+
+    width:96%;
+
+    display:block;
+
+    object-fit:contain;
 
     filter:
+
         drop-shadow(
-            0 2px 3px
-            rgba(0,0,0,.35)
+            0 0 7px
+            rgba(255,0,0,.65)
         );
 
 }
 
 
-/* =====================================================
-   TEXT
-===================================================== */
+/* =========================================================
+   BOTTOM TEXT
+========================================================= */
 
-.text-area {
+.bottom-text{
 
-    flex: 1;
+    position:absolute;
 
-    min-width: 0;
+    left:50%;
 
-    position: relative;
+    top:50%;
 
-    z-index: 2;
+    transform:
+        translate(-50%,-50%);
 
-}
+    width:80%;
 
+    text-align:center;
 
-.title {
+    font-size:
+        clamp(
+            14px,
+            4vw,
+            20px
+        );
 
-    font-size: 14px;
+    line-height:1.25;
 
-    font-weight: 850;
+    font-weight:800;
 
-    line-height: 1.35;
+    font-style:italic;
 
-    color: #fff;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-.description {
-
-    margin-top: 4px;
-
-    font-size: 9px;
-
-    line-height: 1.4;
-
-    color:
-        rgba(255,255,255,.38);
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-}
-
-
-/* =====================================================
-   ARROW
-===================================================== */
-
-.arrow {
-
-    width: 29px;
-    height: 29px;
-
-    min-width: 29px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,0,55,.08);
-
-    border:
-        1px solid
-        rgba(255,23,77,.15);
-
-    color: #ff174d;
-
-    font-size: 21px;
-
-    font-weight: 900;
-
-    position: relative;
-
-    z-index: 2;
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
+    color:#ff1515;
 
     text-shadow:
-        0 0 9px #ff174d;
+
+        0 0 5px #ff0000,
+        0 0 12px #ff0000;
 
 }
 
 
-/* =====================================================
-   HOVER
-===================================================== */
-
-.action-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    border-color:
-        rgba(255,23,77,.42);
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(255,0,55,.10),
-            rgba(255,255,255,.025)
-        );
-
-    box-shadow:
-
-        0 12px 30px
-        rgba(0,0,0,.42),
-
-        0 0 22px
-        rgba(255,0,55,.10);
-
-}
-
-
-.action-button:hover .icon-box {
-
-    transform:
-        scale(1.06);
-
-}
-
-
-.action-button:hover .arrow {
-
-    transform:
-        translateX(4px);
-
-    background:
-        rgba(255,0,55,.18);
-
-}
-
-
-/* =====================================================
-   ACTIVE
-===================================================== */
-
-.action-button:active {
-
-    transform:
-        scale(.965);
-
-    border-color:
-        #ff174d;
-
-    box-shadow:
-
-        0 0 28px
-        rgba(255,0,55,.25),
-
-        inset 0 0 22px
-        rgba(255,0,55,.08);
-
-}
-
-
-.action-button:active .arrow {
-
-    transform:
-        translateX(5px);
-
-}
-
-
-/* =====================================================
-   RIPPLE
-===================================================== */
-
-.ripple {
-
-    position: absolute;
-
-    border-radius: 50%;
-
-    background:
-        rgba(255,255,255,.18);
-
-    transform:
-        scale(0);
-
-    animation:
-        ripple .55s linear;
-
-    pointer-events: none;
-
-    z-index: 10;
-
-}
-
-
-@keyframes ripple {
-
-    to {
-
-        transform:
-            scale(4);
-
-        opacity: 0;
-
-    }
-
-}
-
-
-/* =====================================================
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
-.footer {
+.footer{
 
-    width: 100%;
+    margin-top:8px;
 
-    max-width: 480px;
+    text-align:center;
 
-    margin:
-        16px auto 0;
+    font-size:10px;
 
-    text-align: center;
+    letter-spacing:5px;
 
-    font-size: 8px;
+    color:#cfcfcf;
 
-    font-weight: 700;
-
-    letter-spacing: 2.5px;
-
-    color:
-        rgba(255,255,255,.20);
-
-    position: relative;
-
-    z-index: 2;
+    text-shadow:
+        0 0 6px
+        rgba(255,0,0,.6);
 
 }
 
 
-.footer span {
+.footer .red{
 
-    color:
-        rgba(255,23,77,.65);
+    color:#ff1c1c;
 
 }
 
 
-/* =====================================================
-   TALL SCREEN
-===================================================== */
+/* =========================================================
+   LIGHTNING
+========================================================= */
 
-@media (min-height: 750px) {
+.lightning{
 
-    .panel {
+    position:fixed;
 
-        padding-top:
-            max(
-                45px,
-                env(safe-area-inset-top)
+    width:3px;
+
+    height:150px;
+
+    background:#ff1515;
+
+    box-shadow:
+
+        0 0 6px #ff0000,
+        0 0 15px #ff0000,
+        0 0 35px #ff0000;
+
+    opacity:.35;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+}
+
+
+.lightning.left{
+
+    left:3%;
+
+    bottom:5%;
+
+    transform:
+        rotate(27deg);
+
+}
+
+
+.lightning.right{
+
+    right:3%;
+
+    bottom:13%;
+
+    transform:
+        rotate(-27deg);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:430px){
+
+    .page{
+
+        padding:
+            10px
+            8px
+            22px;
+
+    }
+
+
+    .logo-image{
+
+        width:96%;
+
+        max-height:280px;
+
+    }
+
+
+    .center-title{
+
+        margin-top:4px;
+
+        margin-bottom:15px;
+
+    }
+
+
+    .menu{
+
+        gap:11px;
+
+    }
+
+
+    .menu-button{
+
+        min-height:96px;
+
+        border-radius:16px;
+
+    }
+
+
+    .icon-area{
+
+        width:67px;
+
+        min-width:67px;
+
+        height:67px;
+
+        margin-left:10px;
+
+        margin-right:9px;
+
+    }
+
+
+    .button-title{
+
+        font-size:
+            clamp(
+                16px,
+                4.6vw,
+                21px
             );
 
     }
 
-    .separator {
 
-        margin-top: 26px;
+    .button-description{
 
-        margin-bottom: 21px;
-
-    }
-
-    .button-list {
-
-        gap: 14px;
-
-    }
-
-    .action-button {
-
-        min-height: 76px;
-
-    }
-
-}
-
-
-/* =====================================================
-   SMALL SCREEN
-===================================================== */
-
-@media (max-height: 700px) {
-
-    .panel {
-
-        padding-top:
-            max(
-                20px,
-                env(safe-area-inset-top)
+        font-size:
+            clamp(
+                9px,
+                2.7vw,
+                12px
             );
 
-    }
-
-    .separator {
-
-        margin-top: 17px;
-
-        margin-bottom: 13px;
+        margin-top:4px;
 
     }
 
-    .button-list {
 
-        gap: 9px;
+    .arrow-area{
 
-    }
+        width:53px;
 
-    .action-button {
+        min-width:53px;
 
-        min-height: 61px;
+        height:53px;
 
-    }
-
-    .icon-box {
-
-        width: 39px;
-        height: 39px;
-
-        min-width: 39px;
+        margin-right:8px;
 
     }
 
-}
 
+    .bottom-section{
 
-/* =====================================================
-   VERY SMALL WIDTH
-===================================================== */
-
-@media (max-width: 380px) {
-
-    .panel {
-
-        padding-left: 14px;
-
-        padding-right: 14px;
+        margin-top:20px;
 
     }
 
-    .brand {
 
-        font-size: 27px;
+    .bottom-text{
 
-    }
-
-    .subtitle {
-
-        font-size: 8px;
-
-        letter-spacing: 2.7px;
+        font-size:14px;
 
     }
 
-    .action-button {
 
-        border-radius: 15px;
+    .footer{
 
-    }
+        font-size:8px;
 
-    .title {
-
-        font-size: 13px;
-
-    }
-
-    .description {
-
-        font-size: 8px;
+        letter-spacing:4px;
 
     }
 
 }
 
 
-/* =====================================================
-   REDUCE MOTION
-===================================================== */
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
+@media(max-width:360px){
 
-    *,
-    *::before,
-    *::after {
+    .menu-button{
 
-        animation-duration: .01ms !important;
+        min-height:88px;
 
-        animation-iteration-count: 1 !important;
+    }
 
-        transition-duration: .01ms !important;
+
+    .icon-area{
+
+        width:59px;
+
+        min-width:59px;
+
+        height:59px;
+
+        margin-left:8px;
+
+        margin-right:7px;
+
+    }
+
+
+    .arrow-area{
+
+        width:47px;
+
+        min-width:47px;
+
+        height:47px;
+
+        margin-right:7px;
+
+    }
+
+
+    .button-title{
+
+        font-size:15px;
+
+    }
+
+
+    .button-description{
+
+        font-size:9px;
 
     }
 
@@ -1518,536 +1210,524 @@ body::after {
 
 
 <!-- =====================================================
-     PARTICLES
-===================================================== -->
+     EFFECTS
+====================================================== -->
 
-<div class="particles">
+<div class="red-glow left"></div>
+<div class="red-glow right"></div>
 
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
 
-</div>
-
-
-<!-- =====================================================
-     FULL SCREEN PANEL
-===================================================== -->
-
-<div class="panel-wrap">
+<div class="lightning left"></div>
+<div class="lightning right"></div>
 
 
-    <div class="panel-glow"></div>
+
+<main class="page">
 
 
-    <main class="panel">
+    <!-- =================================================
+         TOP LINE
+    ================================================== -->
+
+    <div class="top-line"></div>
+
+
+
+    <!-- =================================================
+         LOGO
+    ================================================== -->
+
+    <div class="logo-area">
+
+        <img
+            class="logo-image"
+
+            src="https://i.postimg.cc/MTRq1sDk/91A16FB4-93BF-40FE-A998-81968EA3153F.png"
+
+            alt="VaiperX Logo"
+        >
+
+    </div>
+
+
+
+    <!-- =================================================
+         TITLE
+    ================================================== -->
+
+    <div class="center-title">
+
+        IOS INSTALLATION CENTER
+
+    </div>
+
+
+
+    <!-- =================================================
+         MENU
+    ================================================== -->
+
+    <section class="menu">
+
 
 
         <!-- =============================================
-             HEADER
+             BUTTON 1
         ============================================== -->
 
-        <div class="header">
+        <a
+
+            class="menu-button button-1"
+
+            href="https://youtu.be/_UcO8z42oY4?si=cU9hNhi60KTMyy8A"
+
+            target="_blank"
+
+            rel="noopener noreferrer"
+
+        >
+
+            <div class="shine"></div>
 
 
-            <div class="status">
+            <div class="icon-area">
 
-                <span class="status-dot"></span>
+                <img
 
-                SYSTEM ONLINE
+                    src="https://i.postimg.cc/hjxcVCrz/8264F0DD-5923-4BCD-90D9-10AE98593BC2.png"
+
+                    alt="YouTube"
+
+                >
 
             </div>
 
 
-            <div class="brand">
+            <div class="button-content">
 
-                VaiperX<span>🐔 ไก่โค้ด</span>
+                <div class="button-title">
+
+                    คลิปสอนลงไอดีโค้ด IOS
+
+                </div>
+
+
+                <div class="button-description">
+
+                    ดูวิธีติดตั้ง และใช้งานแบบละเอียด
+
+                </div>
 
             </div>
 
 
-            <div class="brand-line"></div>
+            <div class="arrow-area">
+
+                <img
+
+                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
+
+                    alt="เปิด"
+
+                >
+
+            </div>
+
+        </a>
 
 
-            <div class="subtitle">
 
-                IOS INSTALLATION CENTER
+        <!-- =============================================
+             BUTTON 2
+        ============================================== -->
+
+        <a
+
+            class="menu-button button-2"
+
+            href="http://154.215.14.218:8080/"
+
+            target="_blank"
+
+            rel="noopener noreferrer"
+
+        >
+
+            <div class="shine"></div>
+
+
+            <div class="icon-area">
+
+                <img
+
+                    src="https://i.postimg.cc/rmWM5hJt/CAB540D8-87EF-477B-96A0-18B116951A29.png"
+
+                    alt="Website"
+
+                >
 
             </div>
 
 
-        </div>
+            <div class="button-content">
+
+                <div class="button-title">
+
+                    เว็บลงโค้ด
+
+                </div>
+
+
+                <div class="button-description">
+
+                    เปิดเว็บไซต์สำหรับลงไอดีโค้ด
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow-area">
+
+                <img
+
+                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
+
+                    alt="เปิด"
+
+                >
+
+            </div>
+
+        </a>
+
 
 
         <!-- =============================================
-             SEPARATOR
+             BUTTON 3
         ============================================== -->
 
-        <div class="separator"></div>
+        <a
+
+            class="menu-button button-3"
+
+            href="https://img1.pic.in.th/images/image929bf9e127afb92b.png"
+
+            target="_blank"
+
+            rel="noopener noreferrer"
+
+        >
+
+            <div class="shine"></div>
+
+
+            <div class="icon-area">
+
+                <img
+
+                    src="https://i.postimg.cc/d3f3JWJB/A16A61EA-2DB5-4AB9-B869-11883FAFEF0D.png"
+
+                    alt="QR Code"
+
+                >
+
+            </div>
+
+
+            <div class="button-content">
+
+                <div class="button-title">
+
+                    ลิงก์ QR Code
+
+                </div>
+
+
+                <div class="button-description">
+
+                    เปิด QR Code สำหรับใช้งาน
+
+                </div>
+
+            </div>
+
+
+            <div class="arrow-area">
+
+                <img
+
+                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
+
+                    alt="เปิด"
+
+                >
+
+            </div>
+
+        </a>
+
 
 
         <!-- =============================================
-             BUTTON LIST
+             BUTTON 4
         ============================================== -->
 
-        <div class="button-list">
+        <a
+
+            class="menu-button button-4"
+
+            href="https://apps.apple.com/th/app/potatso/id1239860606?l=th"
+
+            target="_blank"
+
+            rel="noopener noreferrer"
+
+        >
+
+            <div class="shine"></div>
 
 
-            <!-- =========================================
-                 1. YOUTUBE
-            ========================================== -->
+            <div class="icon-area">
 
-            <button
-                class="action-button"
-                onclick="openLink(
-                    'https://youtu.be/_UcO8z42oY4?si=s4s4JPg7af7YxwAO',
-                    event,
-                    this
-                )"
-            >
+                <img
 
-                <span class="top-line"></span>
+                    src="https://i.postimg.cc/DZsn1Cgm/8E214900-77DB-45B1-9F1A-0190C87FCEAD.png"
+
+                    alt="App Store"
+
+                >
+
+            </div>
 
 
-                <div class="icon-box">
+            <div class="button-content">
 
-                    <!-- PLAY ICON -->
+                <div class="button-title">
 
-                    <svg viewBox="0 0 24 24">
-
-                        <path d="
-                        M8 5.14v13.72
-                        c0 .78.85 1.26 1.54.82
-                        l10.12-6.86
-                        a.98.98 0 0 0 0-1.64
-                        L9.54 4.32
-                        A.98.98 0 0 0 8 5.14Z
-                        "/>
-
-                    </svg>
+                    ลิงก์แอปที่ใช้งาน
 
                 </div>
 
 
-                <div class="text-area">
+                <div class="button-description">
 
-                    <div class="title">
-
-                        คลิปสอนลงไอดีโค้ด IOS
-
-                    </div>
-
-                    <div class="description">
-
-                        ดูวิธีติดตั้งและใช้งานแบบละเอียด
-
-                    </div>
+                    ดาวน์โหลดแอปสำหรับติดตั้ง
 
                 </div>
 
+            </div>
 
-                <div class="arrow">
 
-                    ›
+            <div class="arrow-area">
 
-                </div>
+                <img
 
-            </button>
+                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
 
+                    alt="เปิด"
 
-            <!-- =========================================
-                 2. WEB
-            ========================================== -->
+                >
 
-            <button
-                class="action-button"
-                onclick="openLink(
-                    'http://154.215.14.218:8080/',
-                    event,
-                    this
-                )"
-            >
+            </div>
 
-                <span class="top-line"></span>
+        </a>
 
 
-                <div class="icon-box">
+    </section>
 
-                    <!-- GLOBE ICON -->
 
-                    <svg viewBox="0 0 24 24">
 
-                        <path d="
-                        M12 2
-                        C6.48 2 2 6.48 2 12
-                        s4.48 10 10 10
-                        10-4.48 10-10
-                        S17.52 2 12 2Zm6.92 9h-3.03
-                        a15.8 15.8 0 0 0-1.22-5.04
-                        A8.04 8.04 0 0 1 18.92 11ZM12 4
-                        c.83 1.2 1.55 3.13 1.82 7h-3.64
-                        C10.45 7.13 11.17 5.2 12 4ZM9.33 5.96
-                        A15.8 15.8 0 0 0 8.11 11H5.08
-                        a8.04 8.04 0 0 1 4.25-5.04ZM5.08 13h3.03
-                        c.15 1.9.57 3.63 1.22 5.04
-                        A8.04 8.04 0 0 1 5.08 13ZM12 20
-                        c-.83-1.2-1.55-3.13-1.82-7h3.64
-                        c-.27 3.87-.99 5.8-1.82 7Zm2.67-1.96
-                        c.65-1.41 1.07-3.14 1.22-5.04h3.03
-                        a8.04 8.04 0 0 1-4.25 5.04Z
-                        "/>
+    <!-- =================================================
+         BOTTOM FRAME
+    ================================================== -->
 
-                    </svg>
+    <div class="bottom-section">
 
-                </div>
 
+        <img
 
-                <div class="text-area">
+            class="bottom-frame"
 
-                    <div class="title">
+            src="https://i.postimg.cc/HnNnTST7/E94AF9AE-A429-4D14-B1A9-8B08DD65A275.png"
 
-                        เว็บลงโค้ด
+            alt="VaiperX System"
 
-                    </div>
+        >
 
-                    <div class="description">
 
-                        เปิดเว็บไซต์สำหรับลงไอดีโค้ด
+        <div class="bottom-text">
 
-                    </div>
-
-                </div>
-
-
-                <div class="arrow">
-
-                    ›
-
-                </div>
-
-            </button>
-
-
-            <!-- =========================================
-                 3. QR CODE
-            ========================================== -->
-
-            <button
-                class="action-button"
-                onclick="openLink(
-                    'https://img1.pic.in.th/images/image929bf9e127afb92b.png',
-                    event,
-                    this
-                )"
-            >
-
-                <span class="top-line"></span>
-
-
-                <div class="icon-box">
-
-                    <!-- QR ICON -->
-
-                    <svg viewBox="0 0 24 24">
-
-                        <path d="
-                        M3 3h7v7H3V3Zm2 2v3h3V5H5Zm9-2h7v7h-7V3Zm2 2v3h3V5h-3ZM3 14h7v7H3v-7Zm2 2v3h3v-3H5Zm9-2h2v2h-2v-2Zm3 0h4v2h-4v-2Zm-3 4h2v3h-2v-3Zm3-2h2v2h-2v-2Zm2 2h2v3h-2v-3Zm-5-1h2v1h-2v-1Z
-                        "/>
-
-                    </svg>
-
-                </div>
-
-
-                <div class="text-area">
-
-                    <div class="title">
-
-                        ลิ้ง QR Code
-
-                    </div>
-
-                    <div class="description">
-
-                        เปิด QR Code สำหรับใช้งาน
-
-                    </div>
-
-                </div>
-
-
-                <div class="arrow">
-
-                    ›
-
-                </div>
-
-            </button>
-
-
-            <!-- =========================================
-                 4. APP
-            ========================================== -->
-
-            <button
-                class="action-button"
-                onclick="openLink(
-                    'https://apps.apple.com/th/app/potatso/id1239860606?l=th',
-                    event,
-                    this
-                )"
-            >
-
-                <span class="top-line"></span>
-
-
-                <div class="icon-box">
-
-                    <!-- DOWNLOAD ICON -->
-
-                    <svg viewBox="0 0 24 24">
-
-                        <path d="
-                        M12 3
-                        a1 1 0 0 1 1 1v8.59
-                        l2.3-2.3
-                        a1 1 0 1 1 1.4 1.42
-                        l-4 4
-                        a1 1 0 0 1-1.4 0
-                        l-4-4
-                        a1 1 0 1 1 1.4-1.42
-                        l2.3 2.3V4
-                        a1 1 0 0 1 1-1ZM4 17
-                        a1 1 0 0 1 1 1h14
-                        a1 1 0 1 1 0 2H5
-                        a3 3 0 0 1-3-3v-1
-                        a1 1 0 1 1 2 0v1Z
-                        "/>
-
-                    </svg>
-
-                </div>
-
-
-                <div class="text-area">
-
-                    <div class="title">
-
-                        ลิ้งแอปที่ใช้ลง
-
-                    </div>
-
-                    <div class="description">
-
-                        ดาวน์โหลดแอปสำหรับติดตั้ง
-
-                    </div>
-
-                </div>
-
-
-                <div class="arrow">
-
-                    ›
-
-                </div>
-
-            </button>
-
+            
 
         </div>
 
-
-        <!-- =============================================
-             FOOTER
-        ============================================== -->
-
-        <div class="footer">
-
-            <span>VAIPERX</span>
-
-            &nbsp;•&nbsp;
-
-            IOS INSTALLATION SYSTEM
-
-        </div>
+    </div>
 
 
-    </main>
 
-</div>
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <div class="footer">
+
+        <span class="red">◆</span>
+
+        VAIPERX
+
+        <span class="red">SYSTEM</span>
+
+        <span class="red">◆</span>
+
+    </div>
+
+
+</main>
+
 
 
 <script>
 
-/* =====================================================
-   OPEN LINK
-===================================================== */
+/* =========================================================
+   BUTTON TOUCH EFFECT
+========================================================= */
 
-function openLink(
-    url,
-    event,
-    button
-) {
-
-
-    /* CREATE RIPPLE */
-
-    createRipple(
-        event,
-        button
+const buttons =
+    document.querySelectorAll(
+        ".menu-button"
     );
 
 
-    /* NO LINK */
-
-    if (!url) {
-
-        return;
-
-    }
+buttons.forEach(
+    button => {
 
 
-    /* OPEN LINK */
+        button.addEventListener(
+            "touchstart",
 
-    setTimeout(() => {
+            () => {
 
-        window.open(
-            url,
-            "_blank"
-        );
+                button.style.transform =
+                    "scale(.965)";
 
-    }, 180);
+            },
 
-}
+            {
+                passive:true
+            }
 
-
-/* =====================================================
-   RIPPLE EFFECT
-===================================================== */
-
-function createRipple(
-    event,
-    button
-) {
-
-    if (
-        !event ||
-        !button
-    ) {
-
-        return;
-
-    }
-
-
-    const rect =
-        button.getBoundingClientRect();
-
-
-    const ripple =
-        document.createElement(
-            "span"
         );
 
 
-    ripple.classList.add(
-        "ripple"
-    );
+        button.addEventListener(
+            "touchend",
 
+            () => {
 
-    const size =
-        Math.max(
-            rect.width,
-            rect.height
+                button.style.transform =
+                    "";
+
+            },
+
+            {
+                passive:true
+            }
+
         );
 
 
-    ripple.style.width =
-        size + "px";
+        button.addEventListener(
+            "touchcancel",
 
+            () => {
 
-    ripple.style.height =
-        size + "px";
+                button.style.transform =
+                    "";
 
+            },
 
-    ripple.style.left =
-        (
-            event.clientX -
-            rect.left -
-            size / 2
-        ) + "px";
+            {
+                passive:true
+            }
 
-
-    ripple.style.top =
-        (
-            event.clientY -
-            rect.top -
-            size / 2
-        ) + "px";
-
-
-    button.appendChild(
-        ripple
-    );
-
-
-    setTimeout(() => {
-
-        ripple.remove();
-
-    }, 600);
-
-}
-
-
-/* =====================================================
-   DISABLE CONTEXT MENU
-===================================================== */
-
-document.addEventListener(
-    "contextmenu",
-    function(event) {
-
-        event.preventDefault();
+        );
 
     }
 );
 
 
-/* =====================================================
+/* =========================================================
    PREVENT DOUBLE TAP ZOOM
-===================================================== */
+========================================================= */
 
 let lastTouchEnd = 0;
 
 
 document.addEventListener(
+
     "touchend",
-    function(event) {
+
+    function(event){
 
         const now =
             Date.now();
 
 
-        if (
+        if(
             now - lastTouchEnd <= 300
-        ) {
+        ){
 
             event.preventDefault();
 
         }
 
 
-        lastTouchEnd = now;
+        lastTouchEnd =
+            now;
 
     },
+
     {
-        passive: false
+        passive:false
     }
+
+);
+
+
+/* =========================================================
+   IMAGE ERROR CHECK
+========================================================= */
+
+document
+.querySelectorAll("img")
+.forEach(
+
+    img => {
+
+        img.addEventListener(
+            "error",
+
+            function(){
+
+                console.log(
+                    "ไม่สามารถโหลดรูป:",
+                    this.src
+                );
+
+            }
+
+        );
+
+    }
+
 );
 
 </script>
