@@ -1,1738 +1,500 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,
-      initial-scale=1.0,
-      maximum-scale=1.0,
-      user-scalable=no">
-
-<meta name="theme-color" content="#050505">
-
-<title>VaiperX IOS Installation Center</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#070707">
+<title>VAIPERX IOS</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Orbitron:wght@500;600;700;800;900&display=swap');
 
-/* =========================================================
-   RESET
-========================================================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-html{
-    width:100%;
-    min-height:100%;
-    background:#050505;
+html, body {
+    width: 100%;
+    min-height: 100%;
 }
 
-body{
-
-    width:100%;
-    min-height:100vh;
-
-    background:#050505;
-
-    color:white;
-
-    font-family:
-        Arial,
-        "Noto Sans Thai",
-        sans-serif;
-
-    overflow-x:hidden;
-
-}
-
-
-/* =========================================================
-   BACKGROUND IMAGE
-========================================================= */
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    background-image:
-
-        linear-gradient(
-            rgba(0,0,0,.08),
-            rgba(0,0,0,.15)
-        ),
-
-        url(
-            "https://i.postimg.cc/mksRjQXP/4D545010-7BA7-4BAE-A2BB-8DA73DE38FAB.png"
-        );
-
-    background-position:
-        center top;
-
-    background-size:
-        cover;
-
-    background-repeat:
-        no-repeat;
-
-    z-index:-10;
-
-}
-
-
-/* =========================================================
-   DARK OVERLAY
-========================================================= */
-
-body::after{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
+body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    font-family: 'Kanit', sans-serif;
+    color: #fff;
     background:
-
-        radial-gradient(
-            circle at 50% 20%,
-            transparent 0%,
-            rgba(0,0,0,.08) 45%,
-            rgba(0,0,0,.38) 100%
-        );
-
-    pointer-events:none;
-
-    z-index:-9;
-
+        radial-gradient(circle at 50% -10%, rgba(255, 0, 55, .16), transparent 34%),
+        linear-gradient(145deg, #030303 0%, #0b0b0d 52%, #030303 100%);
 }
 
-
-/* =========================================================
-   RED GLOW
-========================================================= */
-
-.red-glow{
-
-    position:fixed;
-
-    width:320px;
-    height:320px;
-
-    border-radius:50%;
-
-    background:#ff0000;
-
-    filter:blur(130px);
-
-    opacity:.10;
-
-    pointer-events:none;
-
-    z-index:-5;
-
-    animation:
-        glowMove
-        8s ease-in-out infinite alternate;
-
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
 }
 
-
-.red-glow.left{
-
-    left:-180px;
-    top:40%;
-
+.vx-page {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 22px 14px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-
-.red-glow.right{
-
-    right:-180px;
-    bottom:10%;
-
-    animation-delay:2s;
-
+.vx-header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-
-@keyframes glowMove{
-
-    from{
-        transform:translateY(-30px);
-    }
-
-    to{
-        transform:translateY(30px);
-    }
-
+.vx-brand {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(30px, 9vw, 58px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 1;
+    font-style: italic;
+    color: #fff;
+    text-shadow:
+        0 0 4px rgba(255,255,255,.8),
+        0 0 18px rgba(255,0,50,.7),
+        0 0 40px rgba(255,0,50,.35);
 }
 
+.vx-brand span {
+    color: #ff1748;
+}
 
-/* =========================================================
-   PARTICLES
-========================================================= */
+.vx-sub {
+    margin-top: 9px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(9px, 2.8vw, 13px);
+    letter-spacing: 3px;
+    color: #bdbdbd;
+}
 
-.particle{
+.vx-line {
+    width: min(330px, 80%);
+    height: 1px;
+    margin: 14px auto 0;
+    background: linear-gradient(90deg, transparent, #ff1748, #fff, #ff1748, transparent);
+    box-shadow: 0 0 12px rgba(255, 0, 50, .7);
+}
 
-    position:fixed;
+.vx-menu {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
 
-    width:3px;
-    height:3px;
-
-    border-radius:50%;
-
-    background:#ff1b1b;
-
+.vx-card {
+    position: relative;
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.13);
+    border-left: 3px solid #ff1748;
+    border-radius: 18px;
+    background: linear-gradient(110deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
     box-shadow:
-        0 0 6px #ff0000,
-        0 0 14px #ff0000;
-
-    pointer-events:none;
-
-    z-index:-3;
-
-    animation:
-        floatParticle
-        linear infinite;
-
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 10px 35px rgba(0,0,0,.45),
+        0 0 0 1px rgba(255,0,50,.035);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
-
-.particle:nth-of-type(1){
-    left:8%;
-    top:80%;
-    animation-duration:7s;
+.vx-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 45%;
+    height: 1px;
+    background: linear-gradient(90deg, #ff1748, transparent);
 }
 
-.particle:nth-of-type(2){
-    left:20%;
-    top:65%;
-    animation-duration:9s;
+.vx-card::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 35%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,23,72,.7));
 }
 
-.particle:nth-of-type(3){
-    left:32%;
-    top:90%;
-    animation-duration:6s;
+.vx-card:active {
+    transform: scale(.975);
 }
 
-.particle:nth-of-type(4){
-    left:50%;
-    top:75%;
-    animation-duration:8s;
-}
-
-.particle:nth-of-type(5){
-    left:68%;
-    top:85%;
-    animation-duration:10s;
-}
-
-.particle:nth-of-type(6){
-    left:82%;
-    top:70%;
-    animation-duration:7s;
-}
-
-.particle:nth-of-type(7){
-    left:93%;
-    top:50%;
-    animation-duration:9s;
-}
-
-
-@keyframes floatParticle{
-
-    0%{
-        transform:
-            translateY(40px)
-            scale(.5);
-
-        opacity:0;
-    }
-
-    20%{
-        opacity:.8;
-    }
-
-    80%{
-        opacity:.8;
-    }
-
-    100%{
-        transform:
-            translateY(-180px)
-            scale(1.3);
-
-        opacity:0;
-    }
-
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.page{
-
-    width:100%;
-
-    max-width:560px;
-
-    min-height:100vh;
-
-    margin:
-        0 auto;
-
-    padding:
-        15px
-        12px
-        28px;
-
-    position:relative;
-
-}
-
-
-/* =========================================================
-   TOP LINE
-========================================================= */
-
-.top-line{
-
-    width:80%;
-
-    height:3px;
-
-    margin:
-        0 auto 15px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            #ff0000,
-            #ffffff,
-            #ff0000,
-            transparent
-        );
-
+.vx-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,23,72,.65);
     box-shadow:
-
-        0 0 7px #ff0000,
-        0 0 20px #ff0000;
-
+        inset 0 1px 0 rgba(255,255,255,.1),
+        0 12px 40px rgba(0,0,0,.55),
+        0 0 24px rgba(255,0,50,.12);
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
-.logo-area{
-
-    width:100%;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    position:relative;
-
-    margin-bottom:3px;
-
-}
-
-
-.logo-image{
-
-    width:
-        min(
-            92%,
-            500px
-        );
-
-    max-height:310px;
-
-    object-fit:contain;
-
-    display:block;
-
-    filter:
-
-        drop-shadow(
-            0 0 6px
-            rgba(255,0,0,.65)
-        )
-
-        drop-shadow(
-            0 0 18px
-            rgba(255,0,0,.30)
-        );
-
-}
-
-
-/* =========================================================
-   CENTER TITLE
-========================================================= */
-
-.center-title{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:10px;
-
-    margin:
-        7px 0 19px;
-
-    font-size:
-        clamp(
-            9px,
-            2.8vw,
-            13px
-        );
-
-    font-weight:500;
-
-    letter-spacing:
-        clamp(
-            2px,
-            1vw,
-            5px
-        );
-
-    color:#f5f5f5;
-
-    text-shadow:
-        0 0 7px #ff0000;
-
-}
-
-
-.center-title::before,
-.center-title::after{
-
-    content:"";
-
-    height:2px;
-
-    width:38px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            #ff1111
-        );
-
+.vx-icon {
+    width: 65px;
+    min-width: 65px;
+    height: 65px;
+    margin: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,23,72,.55);
+    border-radius: 15px;
+    background: rgba(255,23,72,.08);
+    color: #fff;
+    font-size: 28px;
     box-shadow:
-        0 0 8px #ff0000;
-
+        inset 0 0 18px rgba(255,23,72,.08),
+        0 0 16px rgba(255,23,72,.08);
 }
 
-
-.center-title::after{
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #ff1111,
-            transparent
-        );
-
+.vx-content {
+    min-width: 0;
+    flex: 1;
+    padding: 2px 0;
 }
 
-
-/* =========================================================
-   MENU
-========================================================= */
-
-.menu{
-
-    width:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
+.vx-title {
+    font-size: clamp(17px, 5vw, 25px);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: .2px;
 }
 
-
-/* =========================================================
-   BUTTON
-========================================================= */
-
-.menu-button{
-
-    width:100%;
-
-    min-height:112px;
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    overflow:hidden;
-
-    text-decoration:none;
-
-    color:white;
-
-    border-radius:20px;
-
-    background:
-
-        rgba(5,5,5,.45)
-
-        url(
-            "https://i.postimg.cc/90hVbG8R/6CB3A5F7-F5FF-4205-AC8F-C60EF7FAE356.png"
-        )
-
-        center / 100% 100%
-
-        no-repeat;
-
-    filter:
-        drop-shadow(
-            0 0 4px
-            rgba(255,0,0,.8)
-        );
-
-    transition:
-        transform .18s ease,
-        filter .18s ease;
-
+.vx-desc {
+    margin-top: 5px;
+    color: #aaa;
+    font-size: clamp(10px, 3vw, 14px);
+    font-weight: 300;
 }
 
-
-/* =========================================================
-   BUTTON HOVER
-========================================================= */
-
-.menu-button:hover{
-
-    transform:
-        translateY(-2px);
-
-    filter:
-
-        drop-shadow(
-            0 0 5px
-            rgba(255,0,0,1)
-        )
-
-        drop-shadow(
-            0 0 15px
-            rgba(255,0,0,.5)
-        );
-
+.vx-arrow {
+    width: 45px;
+    min-width: 45px;
+    height: 45px;
+    margin-right: 13px;
+    border: 1px solid rgba(255,23,72,.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff1748;
+    font-family: Arial, sans-serif;
+    font-size: 35px;
+    line-height: 1;
+    background: rgba(255,23,72,.055);
+    text-shadow: 0 0 10px #ff1748;
 }
 
-
-.menu-button:active{
-
-    transform:
-        scale(.965);
-
+.vx-footer {
+    margin-top: 18px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #666;
 }
 
-
-/* =========================================================
-   BUTTON SHINE
-========================================================= */
-
-.menu-button .shine{
-
-    position:absolute;
-
-    width:100px;
-    height:180%;
-
-    top:-40%;
-
-    left:-150px;
-
-    transform:
-        rotate(20deg);
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.15),
-            transparent
-        );
-
-    pointer-events:none;
-
-    animation:
-        shineMove
-        5s linear infinite;
-
+.vx-footer span {
+    color: #ff1748;
 }
 
-
-@keyframes shineMove{
-
-    0%{
-        left:-180px;
+@media (max-width: 430px) {
+    .vx-page {
+        min-height: 100dvh;
+        padding: 17px 9px 14px;
+        justify-content: center;
     }
 
-    45%{
-        left:120%;
+    .vx-header {
+        margin-bottom: 15px;
     }
 
-    100%{
-        left:120%;
+    .vx-menu {
+        gap: 10px;
     }
 
+    .vx-card {
+        min-height: 91px;
+        border-radius: 15px;
+    }
+
+    .vx-icon {
+        width: 56px;
+        min-width: 56px;
+        height: 56px;
+        margin-left: 10px;
+        margin-right: 11px;
+        border-radius: 13px;
+        font-size: 24px;
+    }
+
+    .vx-arrow {
+        width: 39px;
+        min-width: 39px;
+        height: 39px;
+        margin-right: 9px;
+        font-size: 30px;
+    }
+
+    .vx-desc {
+        margin-top: 3px;
+    }
+}
+
+@media (max-width: 360px) {
+    .vx-brand {
+        font-size: 28px;
+    }
+
+    .vx-card {
+        min-height: 84px;
+    }
+
+    .vx-icon {
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        margin-left: 8px;
+        margin-right: 9px;
+    }
+
+    .vx-title {
+        font-size: 15px;
+    }
+
+    .vx-desc {
+        font-size: 9px;
+    }
+
+    .vx-arrow {
+        width: 35px;
+        min-width: 35px;
+        height: 35px;
+        margin-right: 7px;
+        font-size: 27px;
+    }
+}
+
+/* VAIPERX BACKGROUND IMAGE */
+body {
+    background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.18)),
+        url("https://img2.pic.in.th/ChatGPT-Image-11-..-2569-10_41_06fc9beab9f6ce425d.png") center center / cover no-repeat fixed;
+}
+
+body::before {
+    display: none;
+}
+
+@media (max-width: 430px) {
+    body {
+        background-position: center center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
 }
 
 
 /* =========================================================
-   ICON AREA
-========================================================= */
-
-.icon-area{
-
-    width:88px;
-
-    min-width:88px;
-
-    height:88px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-left:14px;
-
-    margin-right:13px;
-
-    position:relative;
-
-    z-index:2;
-
-}
-
-
-/* =========================================================
-   ICON IMAGE
-========================================================= */
-
-.icon-area img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:contain;
-
-    display:block;
-
-    filter:
-
-        drop-shadow(
-            0 0 5px
-            rgba(255,0,0,.7)
-        );
-
-}
-
-
-/* =========================================================
-   BUTTON CONTENT
-========================================================= */
-
-.button-content{
-
-    flex:1;
-
-    min-width:0;
-
-    position:relative;
-
-    z-index:2;
-
-    padding:
-        0 4px;
-
-}
-
-
-/* =========================================================
-   BUTTON TITLE
-========================================================= */
-
-.button-title{
-
-    font-size:
-        clamp(
-            18px,
-            5vw,
-            26px
-        );
-
-    line-height:1.15;
-
-    font-weight:900;
-
-    font-style:italic;
-
-    color:#ffffff;
-
-    text-shadow:
-
-        2px 2px 0
-        rgba(70,0,0,.95),
-
-        0 0 5px
-        rgba(255,255,255,.35),
-
-        0 0 9px
-        rgba(255,0,0,.65);
-
-}
-
-
-/* =========================================================
-   DESCRIPTION
-========================================================= */
-
-.button-description{
-
-    margin-top:6px;
-
-    font-size:
-        clamp(
-            10px,
-            3vw,
-            14px
-        );
-
-    line-height:1.3;
-
-    font-weight:400;
-
-    color:#e4e4e4;
-
-    text-shadow:
-        0 1px 2px #000;
-
-}
-
-
-/* =========================================================
-   ARROW
-========================================================= */
-
-.arrow-area{
-
-    width:67px;
-
-    min-width:67px;
-
-    height:67px;
-
-    margin-right:12px;
-
-    position:relative;
-
-    z-index:3;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-.arrow-area img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:contain;
-
-    display:block;
-
-    filter:
-
-        drop-shadow(
-            0 0 5px
-            rgba(255,0,0,.8)
-        );
-
-    transition:
-        transform .18s ease;
-
-}
-
-
-.menu-button:hover
-.arrow-area img{
-
-    transform:
-        translateX(4px)
-        scale(1.04);
-
-}
-
-
-/* =========================================================
-   BUTTON 2
-========================================================= */
-
-.button-2 .icon-area img{
-
-    width:82px;
-    height:82px;
-
-}
-
-
-/* =========================================================
-   BUTTON 3
-========================================================= */
-
-.button-3 .icon-area img{
-
-    width:83px;
-    height:83px;
-
-}
-
-
-/* =========================================================
-   BUTTON 4
-========================================================= */
-
-.button-4 .icon-area img{
-
-    width:83px;
-    height:83px;
-
-}
-
-
-/* =========================================================
-   BOTTOM SECTION
-========================================================= */
-
-.bottom-section{
-
-    width:100%;
-
-    position:relative;
-
-    margin-top:25px;
-
-    display:flex;
-
-    justify-content:center;
-
-}
-
-
-/* =========================================================
-   BOTTOM FRAME
-========================================================= */
-
-.bottom-frame{
-
-    width:96%;
-
-    display:block;
-
-    object-fit:contain;
-
-    filter:
-
-        drop-shadow(
-            0 0 7px
-            rgba(255,0,0,.65)
-        );
-
-}
-
-
-/* =========================================================
-   BOTTOM TEXT
-========================================================= */
-
-.bottom-text{
-
-    position:absolute;
-
-    left:50%;
-
-    top:50%;
-
-    transform:
-        translate(-50%,-50%);
-
-    width:80%;
-
-    text-align:center;
-
-    font-size:
-        clamp(
-            14px,
-            4vw,
-            20px
-        );
-
-    line-height:1.25;
-
-    font-weight:800;
-
-    font-style:italic;
-
-    color:#ff1515;
-
-    text-shadow:
-
-        0 0 5px #ff0000,
-        0 0 12px #ff0000;
-
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer{
-
-    margin-top:8px;
-
-    text-align:center;
-
-    font-size:10px;
-
-    letter-spacing:5px;
-
-    color:#cfcfcf;
-
-    text-shadow:
-        0 0 6px
-        rgba(255,0,0,.6);
-
-}
-
-
-.footer .red{
-
-    color:#ff1c1c;
-
-}
-
-
-/* =========================================================
-   LIGHTNING
-========================================================= */
-
-.lightning{
-
-    position:fixed;
-
-    width:3px;
-
-    height:150px;
-
-    background:#ff1515;
-
+   3D ICON BUTTONS
+   ไอคอนทำด้วย SVG ภายในไฟล์ ไม่พึ่งรูปจาก URL
+   ========================================================= */
+
+.vx-icon {
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background:
+        linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,23,72,.10) 45%, rgba(0,0,0,.42));
+    border: 1px solid rgba(255,255,255,.30);
     box-shadow:
-
-        0 0 6px #ff0000,
-        0 0 15px #ff0000,
-        0 0 35px #ff0000;
-
-    opacity:.35;
-
-    pointer-events:none;
-
-    z-index:-2;
-
+        inset 2px 2px 5px rgba(255,255,255,.14),
+        inset -4px -5px 8px rgba(0,0,0,.48),
+        0 5px 0 rgba(100,0,20,.65),
+        0 9px 18px rgba(0,0,0,.55),
+        0 0 18px rgba(255,23,72,.18);
+    transform: translateY(-1px);
 }
 
-
-.lightning.left{
-
-    left:3%;
-
-    bottom:5%;
-
-    transform:
-        rotate(27deg);
-
+.vx-icon::before {
+    content: "";
+    position: absolute;
+    width: 70%;
+    height: 35%;
+    top: 7%;
+    left: 12%;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,.30), transparent);
+    filter: blur(2px);
+    pointer-events: none;
 }
 
-
-.lightning.right{
-
-    right:3%;
-
-    bottom:13%;
-
-    transform:
-        rotate(-27deg);
-
+.vx-icon svg {
+    width: 58%;
+    height: 58%;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter:
+        drop-shadow(2px 3px 0 rgba(70,0,15,.85))
+        drop-shadow(0 0 7px rgba(255,23,72,.95));
+    position: relative;
+    z-index: 2;
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:430px){
-
-    .page{
-
-        padding:
-            10px
-            8px
-            22px;
-
-    }
-
-
-    .logo-image{
-
-        width:96%;
-
-        max-height:280px;
-
-    }
-
-
-    .center-title{
-
-        margin-top:4px;
-
-        margin-bottom:15px;
-
-    }
-
-
-    .menu{
-
-        gap:11px;
-
-    }
-
-
-    .menu-button{
-
-        min-height:96px;
-
-        border-radius:16px;
-
-    }
-
-
-    .icon-area{
-
-        width:67px;
-
-        min-width:67px;
-
-        height:67px;
-
-        margin-left:10px;
-
-        margin-right:9px;
-
-    }
-
-
-    .button-title{
-
-        font-size:
-            clamp(
-                16px,
-                4.6vw,
-                21px
-            );
-
-    }
-
-
-    .button-description{
-
-        font-size:
-            clamp(
-                9px,
-                2.7vw,
-                12px
-            );
-
-        margin-top:4px;
-
-    }
-
-
-    .arrow-area{
-
-        width:53px;
-
-        min-width:53px;
-
-        height:53px;
-
-        margin-right:8px;
-
-    }
-
-
-    .bottom-section{
-
-        margin-top:20px;
-
-    }
-
-
-    .bottom-text{
-
-        font-size:14px;
-
-    }
-
-
-    .footer{
-
-        font-size:8px;
-
-        letter-spacing:4px;
-
-    }
-
+.vx-card:hover .vx-icon {
+    transform: translateY(-3px) rotateX(5deg);
+    box-shadow:
+        inset 2px 2px 6px rgba(255,255,255,.18),
+        inset -4px -5px 8px rgba(0,0,0,.48),
+        0 6px 0 rgba(100,0,20,.65),
+        0 12px 24px rgba(0,0,0,.6),
+        0 0 25px rgba(255,23,72,.30);
 }
 
+.vx-card:active .vx-icon {
+    transform: translateY(3px);
+    box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.10),
+        inset -3px -3px 7px rgba(0,0,0,.50),
+        0 2px 0 rgba(100,0,20,.65),
+        0 4px 10px rgba(0,0,0,.5);
+}
 
-/* =========================================================
-   VERY SMALL PHONE
-========================================================= */
+.vx-arrow {
+    position: relative;
+    background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,23,72,.10));
+    border-color: rgba(255,255,255,.22);
+    box-shadow:
+        inset 2px 2px 5px rgba(255,255,255,.12),
+        inset -3px -3px 6px rgba(0,0,0,.45),
+        0 3px 0 rgba(100,0,20,.65),
+        0 6px 12px rgba(0,0,0,.4),
+        0 0 13px rgba(255,23,72,.18);
+}
 
-@media(max-width:360px){
+.vx-arrow::after {
+    content: "";
+    position: absolute;
+    width: 45%;
+    height: 25%;
+    top: 12%;
+    left: 27%;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    filter: blur(2px);
+}
 
-    .menu-button{
-
-        min-height:88px;
-
+@media (max-width: 430px) {
+    .vx-icon {
+        box-shadow:
+            inset 2px 2px 5px rgba(255,255,255,.14),
+            inset -4px -5px 8px rgba(0,0,0,.48),
+            0 4px 0 rgba(100,0,20,.65),
+            0 7px 15px rgba(0,0,0,.5),
+            0 0 15px rgba(255,23,72,.16);
     }
-
-
-    .icon-area{
-
-        width:59px;
-
-        min-width:59px;
-
-        height:59px;
-
-        margin-left:8px;
-
-        margin-right:7px;
-
-    }
-
-
-    .arrow-area{
-
-        width:47px;
-
-        min-width:47px;
-
-        height:47px;
-
-        margin-right:7px;
-
-    }
-
-
-    .button-title{
-
-        font-size:15px;
-
-    }
-
-
-    .button-description{
-
-        font-size:9px;
-
-    }
-
 }
 
 </style>
-
 </head>
 
-
 <body>
+<main class="vx-page">
 
+    <header class="vx-header">
+        <div class="vx-brand">VAIPER<span>X</span></div>
+        <div class="vx-sub">IOS INSTALLATION CENTER</div>
+        <div class="vx-line"></div>
+    </header>
 
-<!-- =====================================================
-     EFFECTS
-====================================================== -->
+    <section class="vx-menu">
 
-<div class="red-glow left"></div>
-<div class="red-glow right"></div>
-
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-<div class="particle"></div>
-
-<div class="lightning left"></div>
-<div class="lightning right"></div>
-
-
-
-<main class="page">
-
-
-    <!-- =================================================
-         TOP LINE
-    ================================================== -->
-
-    <div class="top-line"></div>
-
-
-
-    <!-- =================================================
-         LOGO
-    ================================================== -->
-
-    <div class="logo-area">
-
-        <img
-            class="logo-image"
-
-            src="https://i.postimg.cc/MTRq1sDk/91A16FB4-93BF-40FE-A998-81968EA3153F.png"
-
-            alt="VaiperX Logo"
-        >
-
-    </div>
-
-
-
-    <!-- =================================================
-         TITLE
-    ================================================== -->
-
-    <div class="center-title">
-
-        IOS INSTALLATION CENTER
-
-    </div>
-
-
-
-    <!-- =================================================
-         MENU
-    ================================================== -->
-
-    <section class="menu">
-
-
-
-        <!-- =============================================
-             BUTTON 1
-        ============================================== -->
-
-        <a
-
-            class="menu-button button-1"
-
-            href="https://youtu.be/_UcO8z42oY4?si=cU9hNhi60KTMyy8A"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-        >
-
-            <div class="shine"></div>
-
-
-            <div class="icon-area">
-
-                <img
-
-                    src="https://i.postimg.cc/hjxcVCrz/8264F0DD-5923-4BCD-90D9-10AE98593BC2.png"
-
-                    alt="YouTube"
-
-                >
-
+        <a class="vx-card vx-card-1" href="https://youtu.be/_UcO8z42oY4?si=cU9hNhi60KTMyy8A" target="_blank" rel="noopener noreferrer">
+            <div class="vx-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 10h31a9 9 0 0 1 9 9v29H21a9 9 0 0 0-9 9V10Z"/><path d="M12 48c0-5 4-9 9-9h31"/><path d="M25 22h18M25 29h12"/></svg></div>
+            <div class="vx-content">
+                <div class="vx-title">คลิปสอนลงไอดีโค้ด IOS</div>
+                <div class="vx-desc">ดูวิธีติดตั้งและใช้งานแบบละเอียด</div>
             </div>
-
-
-            <div class="button-content">
-
-                <div class="button-title">
-
-                    คลิปสอนลงไอดีโค้ด IOS
-
-                </div>
-
-
-                <div class="button-description">
-
-                    ดูวิธีติดตั้ง และใช้งานแบบละเอียด
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow-area">
-
-                <img
-
-                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
-
-                    alt="เปิด"
-
-                >
-
-            </div>
-
+            <div class="vx-arrow">›</div>
         </a>
-
-
-
-        <!-- =============================================
-             BUTTON 2
-        ============================================== -->
-
-        <a
-
-            class="menu-button button-2"
-
-            href="http://154.215.14.218:8080/"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-        >
-
-            <div class="shine"></div>
-
-
-            <div class="icon-area">
-
-                <img
-
-                    src="https://i.postimg.cc/rmWM5hJt/CAB540D8-87EF-477B-96A0-18B116951A29.png"
-
-                    alt="Website"
-
-                >
-
+    
+        <a class="vx-card vx-card-2" href="http://154.215.14.218:8080/" target="_blank" rel="noopener noreferrer">
+            <div class="vx-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8v34"/><path d="m19 30 13 13 13-13"/><path d="M12 51h40v6H12z"/></svg></div>
+            <div class="vx-content">
+                <div class="vx-title">เว็บลงโค้ด</div>
+                <div class="vx-desc">เปิดเว็บไซต์สำหรับลงไอดีโค้ด</div>
             </div>
-
-
-            <div class="button-content">
-
-                <div class="button-title">
-
-                    เว็บลงโค้ด
-
-                </div>
-
-
-                <div class="button-description">
-
-                    เปิดเว็บไซต์สำหรับลงไอดีโค้ด
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow-area">
-
-                <img
-
-                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
-
-                    alt="เปิด"
-
-                >
-
-            </div>
-
+            <div class="vx-arrow">›</div>
         </a>
-
-
-
-        <!-- =============================================
-             BUTTON 3
-        ============================================== -->
-
-        <a
-
-            class="menu-button button-3"
-
-            href="https://img1.pic.in.th/images/image929bf9e127afb92b.png"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-        >
-
-            <div class="shine"></div>
-
-
-            <div class="icon-area">
-
-                <img
-
-                    src="https://i.postimg.cc/d3f3JWJB/A16A61EA-2DB5-4AB9-B869-11883FAFEF0D.png"
-
-                    alt="QR Code"
-
-                >
-
+    
+        <a class="vx-card vx-card-3" href="https://img1.pic.in.th/images/image929bf9e127afb92b.png" target="_blank" rel="noopener noreferrer">
+            <div class="vx-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 8h28v48H18z"/><path d="M25 16h14M25 49h14"/><path d="M27 25h10v10H27z"/></svg></div>
+            <div class="vx-content">
+                <div class="vx-title">ลิงก์ QR Code</div>
+                <div class="vx-desc">เปิด QR Code สำหรับใช้งาน</div>
             </div>
-
-
-            <div class="button-content">
-
-                <div class="button-title">
-
-                    ลิงก์ QR Code
-
-                </div>
-
-
-                <div class="button-description">
-
-                    เปิด QR Code สำหรับใช้งาน
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow-area">
-
-                <img
-
-                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
-
-                    alt="เปิด"
-
-                >
-
-            </div>
-
+            <div class="vx-arrow">›</div>
         </a>
-
-
-
-        <!-- =============================================
-             BUTTON 4
-        ============================================== -->
-
-        <a
-
-            class="menu-button button-4"
-
-            href="https://apps.apple.com/th/app/potatso/id1239860606?l=th"
-
-            target="_blank"
-
-            rel="noopener noreferrer"
-
-        >
-
-            <div class="shine"></div>
-
-
-            <div class="icon-area">
-
-                <img
-
-                    src="https://i.postimg.cc/DZsn1Cgm/8E214900-77DB-45B1-9F1A-0190C87FCEAD.png"
-
-                    alt="App Store"
-
-                >
-
+    
+        <a class="vx-card vx-card-4" href="https://apps.apple.com/th/app/potatso/id1239860606?l=th" target="_blank" rel="noopener noreferrer">
+            <div class="vx-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="20" r="10"/><path d="M14 55c0-10 8-18 18-18s18 8 18 18"/><path d="M49 39c6 2 10 8 10 16"/></svg></div>
+            <div class="vx-content">
+                <div class="vx-title">ลิงก์แอปที่ใช้งาน</div>
+                <div class="vx-desc">ดาวน์โหลดแอปสำหรับติดตั้ง</div>
             </div>
-
-
-            <div class="button-content">
-
-                <div class="button-title">
-
-                    ลิงก์แอปที่ใช้งาน
-
-                </div>
-
-
-                <div class="button-description">
-
-                    ดาวน์โหลดแอปสำหรับติดตั้ง
-
-                </div>
-
-            </div>
-
-
-            <div class="arrow-area">
-
-                <img
-
-                    src="https://i.postimg.cc/fLXDYHKm/9993E3EA-5E72-4476-B347-35057E106A98.png"
-
-                    alt="เปิด"
-
-                >
-
-            </div>
-
+            <div class="vx-arrow">›</div>
         </a>
-
-
+    
     </section>
 
-
-
-    <!-- =================================================
-         BOTTOM FRAME
-    ================================================== -->
-
-    <div class="bottom-section">
-
-
-        <img
-
-            class="bottom-frame"
-
-            src="https://i.postimg.cc/HnNnTST7/E94AF9AE-A429-4D14-B1A9-8B08DD65A275.png"
-
-            alt="VaiperX System"
-
-        >
-
-
-        <div class="bottom-text">
-
-            
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =================================================
-         FOOTER
-    ================================================== -->
-
-    <div class="footer">
-
-        <span class="red">◆</span>
-
-        VAIPERX
-
-        <span class="red">SYSTEM</span>
-
-        <span class="red">◆</span>
-
-    </div>
-
+    <footer class="vx-footer">
+        <span>◆</span> VAIPERX <span>SYSTEM</span> <span>◆</span>
+    </footer>
 
 </main>
 
-
-
 <script>
+document.querySelectorAll('.vx-card').forEach(card => {
+    card.addEventListener('touchstart', () => {
+        card.style.transform = 'scale(.975)';
+    }, {passive:true});
 
-/* =========================================================
-   BUTTON TOUCH EFFECT
-========================================================= */
+    const reset = () => {
+        card.style.transform = '';
+    };
 
-const buttons =
-    document.querySelectorAll(
-        ".menu-button"
-    );
-
-
-buttons.forEach(
-    button => {
-
-
-        button.addEventListener(
-            "touchstart",
-
-            () => {
-
-                button.style.transform =
-                    "scale(.965)";
-
-            },
-
-            {
-                passive:true
-            }
-
-        );
-
-
-        button.addEventListener(
-            "touchend",
-
-            () => {
-
-                button.style.transform =
-                    "";
-
-            },
-
-            {
-                passive:true
-            }
-
-        );
-
-
-        button.addEventListener(
-            "touchcancel",
-
-            () => {
-
-                button.style.transform =
-                    "";
-
-            },
-
-            {
-                passive:true
-            }
-
-        );
-
-    }
-);
-
-
-/* =========================================================
-   PREVENT DOUBLE TAP ZOOM
-========================================================= */
-
-let lastTouchEnd = 0;
-
-
-document.addEventListener(
-
-    "touchend",
-
-    function(event){
-
-        const now =
-            Date.now();
-
-
-        if(
-            now - lastTouchEnd <= 300
-        ){
-
-            event.preventDefault();
-
-        }
-
-
-        lastTouchEnd =
-            now;
-
-    },
-
-    {
-        passive:false
-    }
-
-);
-
-
-/* =========================================================
-   IMAGE ERROR CHECK
-========================================================= */
-
-document
-.querySelectorAll("img")
-.forEach(
-
-    img => {
-
-        img.addEventListener(
-            "error",
-
-            function(){
-
-                console.log(
-                    "ไม่สามารถโหลดรูป:",
-                    this.src
-                );
-
-            }
-
-        );
-
-    }
-
-);
-
+    card.addEventListener('touchend', reset, {passive:true});
+    card.addEventListener('touchcancel', reset, {passive:true});
+});
 </script>
-
-
 </body>
-
 </html>
